@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vibrant.js example</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="libraries/vibrant.js"></script>
+ 
+  </head>
+<style>
+     .hidden {
+        display: none;
+    }
+    .modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fefefe;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+.colorBox {
+    width: 50px;
+    height: 50px;
+    border: 1px solid grey;
+    margin: 10px 0;
+    position: relative;
+}
+.deleteBox {
+position: absolute;
+top: 5px;
+right: 5px;
+cursor: pointer;
+z-index: 3;
+display: none;
+}
+.color-picker{
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+    opacity: 0;
+}
+.colorBox:hover .deleteBox {
+    display: block;
+}
+.deleteBox {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    font-size: 18px;
+    padding: 5px;
+}
+.stackedColorBoxContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stackedColorBox {
+  width: 50px;
+  height: 50px;
+  border: 1px solid grey;
+}
+
+    
+</style>
+  <body>
+    <div id="artTypeButtons">
+        <button data-value="sculpture" class="art-type-btn">Sculpture</button>
+        <button data-value="painting" class="art-type-btn">Painting</button>
+        <button data-value="decorative art" class="art-type-btn">Decorative Art</button>
+      </div>
+      
+
+
+    <p>Mix your own drink</p>
+    <button onclick="addColorBox()">Add</button>
+
+    <div class="colorBox" id="box1">
+        <span class="deleteBox" onclick="clearBoxColor(1)">🗑️</span>
+        <input type="color" id="colorPicker1" class="color-picker">
+    </div>
+    <div class="colorBox hidden" id="box2">
+        <span class="deleteBox" onclick="deleteBox(2)">🗑️</span>
+        <input type="color" id="colorPicker2" class="color-picker">
+    </div>
+    <div class="colorBox hidden" id="box3">
+        <span class="deleteBox" onclick="deleteBox(3)">🗑️</span>
+        <input type="color" id="colorPicker3" class="color-picker">
+    </div>
+    <div class="colorBox hidden" id="box4">
+        <span class="deleteBox" onclick="deleteBox(4)">🗑️</span>
+        <input type="color" id="colorPicker4" class="color-picker">
+    </div>
+    <div class="colorBox hidden" id="box5">
+        <span class="deleteBox" onclick="deleteBox(5)">🗑️</span>
+        <input type="color" id="colorPicker5" class="color-picker">
+    </div>
+    
+    <div class="stackedColorBoxContainer">
+        <div class="stackedColorBox" id="stackedBox5"></div>
+        <div class="stackedColorBox" id="stackedBox4"></div>
+        <div class="stackedColorBox" id="stackedBox3"></div>
+        <div class="stackedColorBox" id="stackedBox2"></div>
+        <div class="stackedColorBox" id="stackedBox1"></div>
+        <div id="combinedColorDisplay"></div>
+      </div>
+      
+  </div>
+  <div id="map-container">
+
+    <svg id="plan" width="500" height="500"></svg>
+    <svg id="decoration" width="500" height="500"></svg>
+      
+
+
+</div>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modalImage" src="" alt="Selected Image">
+        <p id="modalInfo"></p>
+        <div id="colorContainer"></div>
+    </div>
+</div>
+    <div id="image_container">
+
+    </div>
+<script>
+   
+      const colors = [];
+const selectedColors = [];
+
+function getColorByArtType(TypesofArt) {
+    switch (TypesofArt) {
+        case 'sculpture':
+            return 'red';
+        case 'painting':
+            return 'blue';
+        case 'decorative art':
+            return 'green';
+    }
+}
+
+function colorDifference(color1, color2) {
+    const r1 = parseInt(color1.slice(1, 3), 16);
+    const g1 = parseInt(color1.slice(3, 5), 16);
+    const b1 = parseInt(color1.slice(5, 7), 16);
+
+    const r2 = parseInt(color2.slice(1, 3), 16);
+    const g2 = parseInt(color2.slice(3, 5), 16);
+    const b2 = parseInt(color2.slice(5, 7), 16);
+
+    const dr = r1 - r2;
+    const dg = g1 - g2;
+    const db = b1 - b2;
+
+    return Math.sqrt(dr * dr + dg * dg + db * db);
+}
+
+function filterBySelectedColors() {
+    const tolerance = 50;
+    const selectedArtType = d3.select(".art-type-btn.active").attr("data-value") || "all";
+
+    d3.selectAll('.img-container').style('display', function() {
+        if(selectedArtType !== "all" && d3.select(this).attr("data-art-type") !== selectedArtType) {
+            return 'none';
+        }
+        const circleColor = d3.select(this).select('circle').attr('data-color').toUpperCase();
+        for (let i = 0; i < selectedColors.length; i++) {
+            if (colorDifference(circleColor, selectedColors[i]) < tolerance) {
+                return 'block';
+            }
+        }
+        return 'none';
+    });
+}
+
+const modal = document.getElementById("myModal");
+const modalImage = document.getElementById("modalImage");
+const modalInfo = document.getElementById("modalInfo");
+const span = document.getElementsByClassName("close")[0];
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+function showModal(imageUrl, info, colors) {
+    modalImage.src = imageUrl;
+    modalInfo.textContent = info;
+
+    // แสดงสีทั้งหมดใน modal
+    let colorDivs = "";
+    colors.forEach(color => {
+        colorDivs += `<div style="background-color: ${color}; width: 20px; height: 20px;"></div>`;
+    });
+    document.getElementById("colorContainer").innerHTML = colorDivs;
+
+    modal.style.display = "block";
+}
+function makeDots(polygon, numPoints) {
+  const points = [];
+  const xs = polygon.map(p => p[0]);
+  const ys = polygon.map(p => p[1]);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+
+  function insidePolygon(pt, poly) {
+    let inside = false;
+    for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+      const xi = poly[i][0], yi = poly[i][1];
+      const xj = poly[j][0], yj = poly[j][1];
+      const intersect = ((yi > pt[1]) !== (yj > pt[1])) && (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi);
+      if (intersect) inside = !inside;
+    }
+    return inside;
+  }
+
+  while (points.length < numPoints) {
+    const p = [
+      minX + Math.random() * (maxX - minX),
+      minY + Math.random() * (maxY - minY)
+    ];
+    if (insidePolygon(p, polygon)) {
+      points.push(p);
+    }
+  }
+  return points;
+}
+
+Promise.all([
+  d3.xml("Plan.svg"),
+  d3.xml("Isometric try .svg")
+]).then(function(files) {
+  const planDocument = files[0];
+  const isometricDocument = files[1];
+
+  // Add Plan.svg to the DOM
+  const planNode = document.importNode(planDocument.documentElement, true);
+  d3.select("#plan").node().appendChild(planNode);
+  d3.select("#plan").classed("isometric", true);
+
+  // Add Isometric try .svg to the DOM
+  const isometricNode = document.importNode(isometricDocument.documentElement, true);
+  d3.select("#decoration").node().appendChild(isometricNode);
+  d3.select("#decoration").classed("isometric", true);
+});
+
+  d3.csv("data.csv").then(function (data) {
+    // Create an array to store the colored dots.
+    let coloredDots = [];
+
+    data.slice(0, 1000).forEach(function (d, index) {
+      Vibrant.from(d.iiifthumburl).getPalette(function(err, palette) {
+        if (!err) {
+          for (var swatch in palette) {
+            if (palette[swatch] && typeof palette[swatch].getHex === 'function') {
+              const hexColor = palette[swatch].getHex();
+              coloredDots.push({ color: hexColor, artType: d.TypesofArt, imageUrl: d.iiifthumburl });
+
+                    }
+                }
+            }
+        });
+    });
+    const dots = makeDots(polygon, Number(d.Amount));
+
+
+    dots.forEach((dot, index) => {
+    const colorData = coloredDots[index];
+    roomElement.append("circle")
+        .attr("class", "dot")
+        .attr("cx", dot[0])
+        .attr("cy", dot[1])
+        .attr("r", 3)
+        .attr("fill", colorData.color)
+        .on('click', function() {
+            showModal(colorData.imageUrl, `Art Type: ${colorData.artType}`, [colorData.color]);
+        });
+});
+});
+
+
+
+
+d3.selectAll(".art-type-btn").on("click", function() {
+    d3.selectAll(".art-type-btn").classed("active", false);  
+    d3.select(this).classed("active", true); 
+    const type = d3.select(this).attr("data-value");
+    filterArtByType(type);
+});
+
+function filterArtByType(type) {
+    if (type === "all") {
+        d3.selectAll(".img-container").style("display", "block");
+        return;
+    }
+
+    d3.selectAll(".img-container").style("display", "none");
+    d3.selectAll(`.img-container[data-art-type='${type}']`).style("display", "block");
+}
+
+d3.selectAll('.color-picker').on('input', function() {
+    const id = this.id.replace('colorPicker', '');  // แยก ID ของ color-picker เพื่อใช้งาน
+    const selectedColor = this.value.toUpperCase();
+    if (!selectedColors.includes(selectedColor)) {
+        selectedColors.push(selectedColor);
+    }
+    updateColorBoxDisplay(id, selectedColor);  // ปรับแต่งการแสดงผล
+    filterBySelectedColors();
+    addToStackedColorBoxContainer(this.value);
+
+});
+
+
+function updateColorBoxDisplay(id, color) {
+    const box = document.getElementById(`box${id}`);
+    box.style.backgroundColor = color;
+
+    const colorPicker = document.getElementById(`colorPicker${id}`);
+    colorPicker.style.display = 'none';
+}
+
+function addColorBox() {
+    // Iterate over the possible color boxes
+    for (let i = 1; i <= 5; i++) {
+        const box = document.getElementById(`box${i}`);
+        if (box.classList.contains("hidden")) {
+            // Only allow adding a box if the previous box exists and is visible
+            if (i === 1 || !document.getElementById(`box${i - 1}`).classList.contains("hidden")) {
+                box.classList.remove("hidden");
+                return;
+            }
+        }
+    }
+    alert("Maximum number of color boxes reached or previous box is hidden.");
+}
+
+
+function clearBoxColor(id) {
+    const box = document.getElementById(`box${id}`);
+    box.style.backgroundColor = ""; 
+
+    const colorPicker = document.getElementById(`colorPicker${id}`);
+    colorPicker.style.display = 'block'; 
+    colorPicker.value = "#ffffff"; 
+
+    const colorIndex = selectedColors.indexOf(box.style.backgroundColor.toUpperCase());
+    if (colorIndex > -1) {
+        selectedColors.splice(colorIndex, 1);
+    }
+
+    filterBySelectedColors();
+}
+
+function deleteBox(id) {
+    const box = document.getElementById(`box${id}`);
+    box.classList.add("hidden"); // Hide the box
+
+    // Reset the box state
+    clearBoxColor(id);
+}
+
+// Add double-click event listeners to all color boxes.
+for (let i = 1; i <= 5; i++) {
+    document.getElementById(`box${i}`).addEventListener('dblclick', function() {
+        clearColor(i);
+    });
+}
+
+function updateColorBoxDisplay(id, color) {
+        const box = document.getElementById(`box${id}`);
+        box.style.backgroundColor = color;
+
+        const colorPicker = document.getElementById(`colorPicker${id}`);
+        colorPicker.style.display = 'none';
+
+        // Update the corresponding stackedColorBox with the selected color
+        const stackedBox = document.getElementById(`stackedBox${id}`);
+        stackedBox.style.backgroundColor = color;
+    }
+
+    function addToStackedColorBoxContainer(color, id) {
+        const stackedBox = document.getElementById(`stackedBox${id}`);
+        if (!stackedBox.style.backgroundColor) {
+            stackedBox.style.backgroundColor = color;
+        }
+    }
+
+    </script>
+  </body>
+</html>
