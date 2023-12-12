@@ -1,0 +1,497 @@
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif; /* You can change the font-family to match your design */
+
+}
+
+
+.hidden {
+    display: none;
+}
+/* สไตล์ของ Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 600px;
+  text-align: center;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* สไตล์ของสไวช์สี */
+.color-swatch {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  margin: 5px;
+  border: 1px solid #ccc;
+}
+
+
+.close {
+color: #aaaaaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer;
+}
+
+.close:hover, .close:focus {
+color: #000;
+text-decoration: none;
+cursor: pointer;
+}
+#Combinecolor{
+width:198px;
+height: 300px;
+}
+.colorBox {
+width: 80px;
+height: 80px;
+border: 1px solid #a1a1a1;
+margin: 10px 0;
+position: relative;
+}
+.deleteBox {
+position: absolute;
+top: 5px;
+right: 5px;
+cursor: pointer;
+z-index: 3;
+display: none;
+}
+
+.color-picker{
+height:80px;
+width: 80px;
+display: inline-block;
+opacity: 0;
+}
+
+.colorBox:hover .deleteBox {
+display: block;
+}
+
+.deleteBox {
+display: none;
+position: absolute;
+top: 0;
+right: 0;
+cursor: pointer;
+font-size: 18px;
+padding: 5px;
+}
+
+.pagecontainer{
+  display: flex;
+  flex-direction: column;
+  background-color: #EEEEEE;
+}
+
+.container {
+display: flex;
+height: 745px;
+flex-direction: row;
+gap: 40px;
+padding: 40px;
+}
+.columnleft {
+width: 720px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 40px;
+}
+#svg-container{
+  width: 582.26px;
+  height: 249.1px;
+  transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg);
+}
+#plan{
+  width: 720px;
+  height: 415.66px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.columnright{
+position: relative;
+width: 560px;
+padding: 20px;
+border-radius: 20px;
+border: 2px solid #3d3d3d;   
+background-color: #ffffff;
+align-items: center;
+justify-content: center;
+}
+
+
+#colorfilter {
+display: flex;
+align-items: center;
+}
+
+#glass{
+  position: relative;
+  left:-25.5px;
+  top: -158px;
+  z-index: 2;
+}
+#bottle{
+  position: relative;
+  left:-5.5px;
+  top: -293.2px;
+  z-index: 2;
+}
+#champ{
+  position: relative;
+  left:-9.5px;
+  top: -162.2px;
+  z-index: 2;
+}
+
+#decor{
+  position: relative;
+  left:-8.5px;
+  top: -177.2px;
+  z-index: 2;
+}
+  
+#Combinecolor{
+height: 300px;
+align-items: center;
+justify-content: center;
+}
+.stackedColorBoxContaineroverview{
+  z-index: 1;
+  width: 85px;
+  height: 270px;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  clip-path: url(#bottleclip); 
+  flex-direction: column;
+  filter: blur(2px) brightness(120%) grayscale(50%);
+}
+.stackedColorBoxContainerpainting{
+  display: flex;
+  position: relative;
+  z-index: 1;
+  width: 204px;
+  height: 145px;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  clip-path: url(#paintingclip); 
+  filter: blur(2px) brightness(120%) grayscale(50%);
+}
+
+.stackedColorBoxContainersculpture{
+  display: flex;
+  position: relative;
+  z-index: 1;
+  width: 54px;
+  height: 150px;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  clip-path: url(#sclupclip); 
+  filter: blur(2px) brightness(120%) grayscale(50%);
+}
+.stackedColorBoxContainerdecor{
+  display: flex;
+  position: relative;
+  z-index: 1;
+  width: 115px;
+  height: 170px;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  clip-path: url(#decorclip); 
+  filter: blur(2px) brightness(120%) grayscale(50%);
+}
+
+#paintcontainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#allcontainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#sculpcontainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+#decorcontainer{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.stackedColorBox {
+    position: absolute;
+    width: 198px;
+    height: 20%;
+    z-index: 1;
+  }
+  
+#stackedBox1 { bottom: 0%;}
+#stackedBox2 { bottom: 20%;}
+#stackedBox3 { bottom: 40%;}
+#stackedBox4 { bottom: 60%;}
+#stackedBox5 { bottom: 80%;}
+#stackedBox6 { bottom: 0%;}
+#stackedBox7 { bottom: 20%;}
+#stackedBox8 { bottom: 40%;}
+#stackedBox9 { bottom: 60%;}
+#stackedBox10 { bottom: 80%;}
+#stackedBox11 { bottom: 0%; }
+#stackedBox12 { bottom: 20%;}
+#stackedBox13 { bottom: 40%;}
+#stackedBox14 { bottom: 60%;}
+#stackedBox15 { bottom: 80%;}
+#stackedBox16 { bottom: 0%;}
+#stackedBox17 { bottom: 20%;}
+#stackedBox18 { bottom: 40%;}
+#stackedBox19 { bottom: 60%;}
+#stackedBox20 { bottom: 80%;}
+
+#addbutton{
+width: 20px; /* Set the width of the button */
+height: 82px; /* Set the height of the button */
+background-color: #a1a1a1; /* The background color for the button */
+border: 2px solid #a1a1a1; /* The border color for the button */
+border-radius: 0 4px 4px 0; /* Rounded corners on the right side */
+display: flex; /* Use flexbox for centering content */
+justify-content: center; /* Center content horizontally */
+align-items: center; /* Center content vertically */
+font-size: 24px; /* Size of the '+' sign */
+color: #606060; /* Color of the '+' sign */
+cursor: pointer; /* Changes cursor to pointer on hover */
+}
+
+#svg-container {
+    z-index: 1;
+}
+/* Style the tab */
+.tab {
+  width: 100%;
+    overflow: hidden;
+    background-color: #fff; /* or any other color you want */
+    display: flex;
+    justify-content: space-around; /* This will space your tabs evenly */
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    width: 112px;
+    height: 100px;
+    background-color: inherit;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    font-size: 14px; /* Adjust as needed */
+    animation: fadeEffect 0.5s;
+    display: flex;
+    flex-direction: column;
+    display: flex;
+    width: 112px;
+    padding: 4px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    align-self: stretch;
+  }
+  
+  /* Change background color of buttons on hover */
+  .tab button:hover {
+    background-color: #ddd;
+  }
+  
+  /* Create an active/current tablink class */
+  .tab button.active {
+    border-bottom: 2px solid #3d3d3d; /* active tab underline */
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 20px;
+    border: none; /* Remove border if you don't need it */
+    animation: fadeEffect 0.5s; /* Fading effect on tab content */
+    top: 50%;
+    left: 50%;
+  }
+  
+  /* Fade in tabs */
+  @keyframes fadeEffect {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+
+
+/* Navigation */
+/* Style the dropdown button */
+.dropdown-btn {
+  background-color: white;
+  color: black;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  width: 100%;
+  text-align: left;
+}
+
+.navbar {
+  width: 100%;
+  background-color: #333;
+  position: absolute;
+  z-index: 101;
+}
+
+/* Style adjustments for the button-style */
+.button-style {
+  display: block;
+  padding: 10px 15px;
+  margin: 5px 0;
+  background-color: white;
+  color:black;
+  text-align: left;
+  text-decoration: none;
+  border: none;
+  width: 100%; /* Full width */
+  text-align: left; /* Align text to the left within button */
+}
+
+.button-style:hover {
+  background-color: #2874A6; /* Darken the button on hover */
+}
+
+/* Styles for accordion and panel */
+.accordion {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  padding: 10px 15px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  transition: 0.4s;
+  margin: 5px 0; /* Add space between the buttons */
+}
+
+/* .active, .accordion:hover {
+  background-color: #2874A6; /* Add a darker background on hover */
+/* } */ 
+
+.active:after {
+  content: "\2212"; /* Add minus sign for active accordion */
+}
+
+.accordion:after {
+  content: '\002B'; /* Unicode character for plus sign */
+  color: white;
+  float: right;
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+
+/* Clear margins for the links inside .panel */
+.panel a {
+  margin: 0;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  flex-direction: column; /* Stack elements vertically */
+}
+
+/* Style to highlight the active link */
+.dropdown-content a.active {
+  background-color: blue; /* Change background color for the active link */
+}
+
+/* Style adjustments for the button-style */
+.button-style {
+  display: block;
+  padding: 10px 15px;
+  color: black;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+
+.button-style:hover {
+  background-color: #f1f1f1;
+}
+
+#colorContainer div {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+}
+
+.color-swatch {
+  width: 30px; /* กำหนดความกว้าง */
+  height: 30px; /* กำหนดความสูง */
+  display: inline-block;
+  margin: 5px;
+  border: 1px solid #ccc;
+  z-index: 100;
+}

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Vibrant.js example</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="libraries/vibrant.js"></script>
+  <link rel="stylesheet" href="style.css" /> 
+
+  </head>
+  </html>
+  <style>
+#svg-container1{
+    width: 200px;
+    height: 200px;
+}
+#svg-container2{
+    width: 200px;
+    height: 200px;
+}
+  </style>
+  <body>
+    <div class="navbar">
+        <button class="dropdown-btn">Sculpture Garden</button>
+        <div class="dropdown-content">
+          <!-- Direct links -->
+          <a class="button-style" href="landingpage.html">Home</a>
+          <a class="button-style" href="SculptureGarden.html">Sculpture Garden</a>
+      
+          <!-- Submenu Entries for West Building -->
+          <button class="accordion">West Building</button>
+          <div class="panel">
+            <a class="button-style" href="index.html">Main Floor</a>
+            <a class="button-style" href="W-Ground.html">Ground Floor</a>
+          </div>
+      
+          <!-- Submenu Entries for East Building -->
+          <button class="accordion">East Building</button>
+          <div class="panel">
+            <a class="button-style" href="index.html">Concourse</a>
+            <a class="button-style" href="E-Ground.html">Ground Level</a>
+            <a class="button-style" href="E-Mezzanine.html">Mezzanine</a>
+            <a class="button-style" href="E-Upper.html">Upper level</a>
+            <a class="button-style" href="E-Tower.html">Tower</a>
+          </div>
+        </div>
+      </div>
+    
+   
+<div class="container">
+<div class="columnleft" id="image_container">
+    <div id ="title">
+        <h1>Sculpture Garden</h1>
+    </div>
+    <div id="plan">
+    <div id="svg-container"></div>
+</div>
+    <p> Click dot to discover your drink</p>
+</div>
+
+<!-- card -->
+<div class="columnright">
+    <div id="header-right">
+        <h3>Creates your mixer</h3>
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" onclick="openTab(event, 'Overview')" data-value="all" id="defaultOpen">
+            <img src="Overall.svg" alt="Overview Icon">Overview
+            </button>
+            <button class="tablinks" onclick="openTab(event, 'Sculpture')"data-value="Sculpture">
+            <img src="sculpture.svg" alt="Sculpture Icon">Sculpture
+            </button>
+            <button class="tablinks" onclick="openTab(event, 'DecorativeArt')"data-value="Decorative Art">
+            <img src="Decorative art.svg" alt="Decorative Art Icon">Decorative Art
+            </button>
+    </div>
+
+<!-- Tab content -->
+<div class="content">
+    <!-- Overview tab -->
+    <div id="Overview" class="tabcontent">
+     <div id="allcontainer">
+        <div id ="Combinecolor">
+            <div class="stackedColorBoxContaineroverview">
+                <svg width="0" height="0" viewBox="0 0 205 244" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                      <clipPath id="bottleclip">
+                        <path d="M1.47962 116.233L1.47962 116.229L1.47963 116.213C1.48188 111.258 1.53198 107.938 1.98132 105.198C2.42661 102.483 3.26574 100.332 4.87094 97.7357C24.9092 65.3212 28.5011 31.5935 29.0223 1.21728L42.3245 1.21705C42.8456 31.5934 46.4374 65.3211 66.4758 97.7357C68.0809 100.332 68.92 102.483 69.3653 105.198C69.8147 107.937 69.8648 111.256 69.8671 116.211L69.8671 116.227L69.8671 116.231L69.8672 116.245V116.247V190.386C69.2603 191.537 67.991 192.804 65.7443 194.05C63.348 195.379 60.2278 196.464 56.6942 197.302C49.6307 198.975 41.6875 199.48 36.5037 199.412H36.5035L36.4767 199.412H36.4705H36.4437C22.1842 199.412 13.2381 197.445 7.90529 195.208C3.18571 193.228 1.79345 191.282 1.47949 190.683L1.4795 116.246V116.244L1.47962 116.233Z"/>
+                    </clipPath>
+                    </defs>
+                  </svg>
+                <!-- These divs will use the SVG clipPath defined above -->
+                <div class="stackedColorBox" id="stackedBox5"></div>
+                <div class="stackedColorBox" id="stackedBox4"></div>
+                <div class="stackedColorBox" id="stackedBox3"></div>
+                <div class="stackedColorBox" id="stackedBox2"></div>
+                <div class="stackedColorBox" id="stackedBox1"></div>
+            </div>
+            <svg id="bottle"xmlns="http://www.w3.org/2000/svg" width="100" height="300" viewBox="0 0 100 302" fill="none">
+                <path d="M45 7V3C45 1.89543 44.1046 1 43 1H22C20.8954 1 20 1.89543 20 3V7M45 7H20M45 7C46.1046 7 47 7.89543 47 9V11C47 12.1046 46.1046 13 45 13M20 7C18.8954 7 18 7.89543 18 9V11C18 12.1046 18.8954 13 20 13M20 13H45M20 13V28C20 28.5523 20.4477 29 21 29H44C44.5523 29 45 28.5523 45 28V13M61.4938 104.926V244.432C61.4938 246.137 60.112 247.519 58.4074 247.519H7.17284C5.46826 247.519 4.08642 246.137 4.08642 244.432V104.926C4.08641 102.802 4.1361 99.6276 4.82336 96.3455C5.51462 93.0444 6.79487 89.9157 9.04663 87.6639C10.0967 86.6138 11.0176 85.854 12.0282 85.0201C12.6861 84.4773 13.3819 83.9032 14.1761 83.1973C16.0408 81.5397 17.9037 79.5671 19.4975 76.604C22.6187 70.8012 24.4568 61.6575 24.4568 44.4321V32.0864H41.1235V44.4321C41.1235 61.6575 42.9615 70.8012 46.0828 76.604C47.6766 79.5671 49.5394 81.5397 51.4042 83.1973C52.1984 83.9032 52.8942 84.4773 53.552 85.0201C54.5626 85.854 55.4835 86.6138 56.5336 87.6639C58.7854 89.9157 60.0656 93.0444 60.7569 96.3455C61.4441 99.6276 61.4938 102.802 61.4938 104.926ZM64.5802 244.432V104.926C64.5803 100.605 64.3951 91.1605 58.716 85.4815C57.5914 84.3569 56.4591 83.4182 55.3496 82.4985C49.4562 77.6129 44.2099 73.2639 44.2099 44.4321V29H21.3704V44.4321C21.3704 73.2639 16.1241 77.6129 10.2306 82.4985C9.12118 83.4182 7.98882 84.3569 6.8642 85.4815C1.18519 91.1605 0.999985 100.605 1 104.926V244.432C1 247.841 3.76367 250.605 7.17284 250.605H58.4074C61.8166 250.605 64.5802 247.841 64.5802 244.432Z" stroke="black"/>
+            </svg>
+        </div>
+    </div>
+
+        <div id="filter">
+            <h2>Add your own ingredients</h2> 
+        
+           <div id="colorfilter">
+            <div class="colorBox" id="box1">
+                <span class="deleteBox" onclick="clearBoxColor(1)">🗑️</span>
+                <input type="color" id="colorPicker1" class="color-picker">
+            </div>
+            <div class="colorBox hidden" id="box2">
+                <span class="deleteBox" onclick="deleteBox(2)">🗑️</span>
+                <input type="color" id="colorPicker2" class="color-picker">
+            </div>
+            <div class="colorBox hidden" id="box3">
+                <span class="deleteBox" onclick="deleteBox(3)">🗑️</span>
+                <input type="color" id="colorPicker3" class="color-picker">
+            </div>
+            <div class="colorBox hidden" id="box4">
+                <span class="deleteBox" onclick="deleteBox(4)">🗑️</span>
+                <input type="color" id="colorPicker4" class="color-picker">
+            </div>
+            <div class="colorBox hidden" id="box5">
+                <span class="deleteBox" onclick="deleteBox(5)">🗑️</span>
+                <input type="color" id="colorPicker5" class="color-picker">
+            </div>
+                <button id="addbutton" onclick="addColorBox()">+</button>
+            </div>
+            </div>
+          </div> 
+  
+  <div id="Painting" class="tabcontent">
+    <div id="paintcontainer">
+    <div id ="Combinecolor">
+        <div class="stackedColorBoxContainerpainting">
+            <svg width="0" height="0" viewBox="0 0 205 244" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <clipPath id="paintingclip">
+                    <path d="M199.97 1H2L105.185 142.43L199.97 1Z"/>
+                </clipPath>
+                </defs>
+              </svg>
+            <!-- These divs will use the SVG clipPath defined above -->
+            <div class="stackedColorBox" id="stackedBox10"></div>
+            <div class="stackedColorBox" id="stackedBox9"></div>
+            <div class="stackedColorBox" id="stackedBox8"></div>
+            <div class="stackedColorBox" id="stackedBox7"></div>
+            <div class="stackedColorBox" id="stackedBox6"></div>
+        </div>
+        <svg id="glass" xmlns="http://www.w3.org/2000/svg" width="252" height="300" viewBox="0 0 205 244" fill="none">
+            <path d="M204 1L204.414 1.27998L204.941 0.5H204V1ZM1 1V0.5H0.0158394L0.596183 1.29484L1 1ZM109.439 140.911L109.025 140.631L108.939 140.758V140.911H109.439ZM109.439 234.486H108.939V234.695L109.087 234.842L109.439 234.486ZM148.772 237.899H149.272V237.399H148.772V237.899ZM148.772 243V243.5H149.272V243H148.772ZM64.3776 243H63.8776V243.5H64.3776V243ZM64.3776 237.899V237.399H63.8776V237.899H64.3776ZM103.105 234.718L103.431 235.098L103.605 234.948V234.718H103.105ZM103.105 140.844H103.605V140.681L103.509 140.549L103.105 140.844ZM22.9459 11.6351V11.1351H21.962L22.5421 11.9298L22.9459 11.6351ZM182.7 11.6351L183.115 11.9135L183.637 11.1351H182.7V11.6351ZM106.211 125.722L105.808 126.017L106.229 126.594L106.627 126L106.211 125.722ZM204 0.5H1V1.5H204V0.5ZM109.853 141.191L204.414 1.27998L203.586 0.720017L109.025 140.631L109.853 141.191ZM109.939 234.486V140.911H108.939V234.486H109.939ZM126.338 237.399C122.203 237.399 118.884 237.398 116.168 236.978C113.467 236.561 111.416 235.738 109.79 234.131L109.087 234.842C110.913 236.647 113.19 237.531 116.015 237.967C118.825 238.4 122.23 238.399 126.338 238.399V237.399ZM148.772 237.399H126.338V238.399H148.772V237.399ZM149.272 243V237.899H148.272V243H149.272ZM64.3776 243.5H148.772V242.5H64.3776V243.5ZM63.8776 237.899V243H64.8776V237.899H63.8776ZM86.8113 237.399H64.3776V238.399H86.8113V237.399ZM102.78 234.339C101.183 235.708 99.1685 236.479 96.5509 236.903C93.9251 237.328 90.7347 237.399 86.8113 237.399V238.399C90.7286 238.399 93.995 238.33 96.7108 237.89C99.4349 237.449 101.647 236.628 103.431 235.098L102.78 234.339ZM102.605 140.844V234.718H103.605V140.844H102.605ZM0.596183 1.29484L102.701 141.139L103.509 140.549L1.40382 0.705158L0.596183 1.29484ZM22.9459 12.1351H182.7V11.1351H22.9459V12.1351ZM106.615 125.427L23.3498 11.3403L22.5421 11.9298L105.808 126.017L106.615 125.427ZM182.284 11.3566L105.796 125.443L106.627 126L183.115 11.9135L182.284 11.3566Z" fill="#3D3D3D"/>
+        </svg>
+  </div>
+</div>
+  <div id="filter">
+    <h2>Add your own ingredients</h2>
+
+    <div id="colorfilter">
+        <div class="colorBox" id="box6">
+            <span class="deleteBox" onclick="clearBoxColor(6)">🗑️</span>
+            <input type="color" id="colorPicker6" class="color-picker">
+        </div>
+        <div class="colorBox hidden" id="box7">
+            <span class="deleteBox" onclick="deleteBox(7)">🗑️</span>
+            <input type="color" id="colorPicker7" class="color-picker">
+        </div>
+        <div class="colorBox hidden" id="box8">
+            <span class="deleteBox" onclick="deleteBox(8)">🗑️</span>
+            <input type="color" id="colorPicker8" class="color-picker">
+        </div>
+        <div class="colorBox hidden" id="box9">
+            <span class="deleteBox" onclick="deleteBox(9)">🗑️</span>
+            <input type="color" id="colorPicker9" class="color-picker">
+        </div>
+        <div class="colorBox hidden" id="box10">
+            <span class="deleteBox" onclick="deleteBox(10)">🗑️</span>
+            <input type="color" id="colorPicker10" class="color-picker">
+        </div>
+            <button id="addbutton" onclick="addColorBox()">+</button>
+        </div>
+    </div>
+    </div>
+
+  <div id="Sculpture" class="tabcontent">
+    <div id="sculpcontainer">
+    <div id ="Combinecolor">
+        <div class="stackedColorBoxContainersculpture">
+            <svg width="0" height="0" viewBox="0 0 205 244" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <clipPath id="sclupclip">
+                    <path d="M55.6081 94.9114V1.11035H1.79663V93.8107C2.34573 112.523 8.49561 149.947 28.7024 149.947C48.9091 149.947 55.6081 121.328 55.6081 94.9114Z"/>
+                  </clipPath>
+                </defs>
+              </svg>
+            <!-- These divs will use the SVG clipPath defined above -->
+            <div class="stackedColorBox" id="stackedBox15"></div>
+            <div class="stackedColorBox" id="stackedBox14"></div>
+            <div class="stackedColorBox" id="stackedBox13"></div>
+            <div class="stackedColorBox" id="stackedBox12"></div>
+            <div class="stackedColorBox" id="stackedBox11"></div>
+        </div>
+    <svg id="champ"xmlns="http://www.w3.org/2000/svg" width="132" height="514" viewBox="0 0 132 514" fill="none">
+        <path d="M10.7966 13.1101H11.7966H65.6081H66.6081V14.1101V107.911C66.6081 121.18 64.9288 135.083 60.6607 145.708C56.3961 156.324 49.4079 163.946 38.7024 163.946C33.3009 163.946 28.8748 161.432 25.3081 157.476C21.7582 153.539 19.0232 148.139 16.935 142.228C12.7571 130.404 11.0734 116.258 10.797 106.84L10.7966 106.825V106.81V14.1101V13.1101ZM12.7966 15.1101V106.796C13.0706 116.089 14.7369 130.003 18.8207 141.562C20.8644 147.347 23.49 152.473 26.7935 156.137C30.0803 159.783 34.0004 161.946 38.7024 161.946C48.2036 161.946 54.6683 155.26 58.8048 144.962C62.9379 134.674 64.6081 121.059 64.6081 107.911V15.1101H12.7966ZM0 0H1H76.4025H77.4025V1V98.9389C77.4025 116.993 75.1796 135.852 69.5865 150.503C64.1264 164.805 55.3327 175.367 42.0176 176.872V286.34C42.8167 286.905 44.289 287.638 46.3315 288.442C48.6614 289.36 51.6079 290.325 54.8428 291.203C61.3264 292.963 68.8753 294.35 74.8634 294.35H75.8634V295.35V299.829V300.829H74.8634H39.4704H37.9316H2.53858H1.53858V299.829V295.35V294.35H2.53858C8.53065 294.35 16.0839 292.961 22.5686 291.2C25.8041 290.321 28.7503 289.355 31.0786 288.437C33.12 287.632 34.5891 286.899 35.3842 286.335V176.818C28.8358 175.865 23.4327 172.107 19.0192 166.71C14.4145 161.08 10.8411 153.615 8.09879 145.504C2.61348 129.28 0.376276 110.234 0.000430286 97.4258L0 97.4112V97.3965V1V0ZM2 2V97.3818C2.37345 110.064 4.59339 128.891 9.99343 144.864C12.6949 152.854 16.1728 160.071 20.5674 165.444C24.9535 170.807 30.2064 174.283 36.4885 174.942L37.3842 175.035V175.936V286.82V287.27L37.0474 287.568C36.0875 288.419 34.1749 289.366 31.8125 290.297C29.4018 291.248 26.3835 292.236 23.0929 293.13C16.872 294.82 9.59429 296.198 3.53858 296.338V298.829H37.9316H39.4704H73.8634V296.338C67.8118 296.198 60.5384 294.821 54.3189 293.133C51.0289 292.24 48.0104 291.253 45.5983 290.303C43.234 289.371 41.3198 288.425 40.3562 287.576L40.0176 287.277V286.825V175.964V175.041L40.9374 174.967C53.6185 173.947 62.2384 164.143 67.718 149.79C73.1892 135.459 75.4025 116.872 75.4025 98.9389V2H2Z" fill="#3D3D3D"/>
+        </svg>
+  </div>
+</div>
+  <div id="filter">
+    <h2>Add your own ingredients</h2>
+
+    <div id="colorfilter">
+    <div class="colorBox" id="box11">
+        <span class="deleteBox" onclick="clearBoxColor(11)">🗑️</span>
+        <input type="color" id="colorPicker11" class="color-picker">
+    </div>
+    <div class="colorBox hidden" id="box12">
+        <span class="deleteBox" onclick="deleteBox(12)">🗑️</span>
+        <input type="color" id="colorPicker12" class="color-picker">
+    </div>
+    <div class="colorBox hidden" id="box13">
+        <span class="deleteBox" onclick="deleteBox(13)">🗑️</span>
+        <input type="color" id="colorPicker13" class="color-picker">
+    </div>
+    <div class="colorBox hidden" id="box14">
+        <span class="deleteBox" onclick="deleteBox(14)">🗑️</span>
+        <input type="color" id="colorPicker14" class="color-picker">
+    </div>
+    <div class="colorBox hidden" id="box15">
+        <span class="deleteBox" onclick="deleteBox(15)">🗑️</span>
+        <input type="color" id="colorPicker15" class="color-picker">
+    </div>
+        <button id="addbutton" onclick="addColorBox()">+</button>
+    </div>
+    </div>
+  </div> 
+  
+  <div id="DecorativeArt" class="tabcontent">
+    <div id="decorcontainer">
+    <div id ="Combinecolor">
+        <div class="stackedColorBoxContainerdecor">
+            <svg width="0" height="0" viewBox="0 0 205 244" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <clipPath id="decorclip">
+                    <path d="M55.255 167.496C-20.2827 133.246 -0.784142 42.2277 18.4073 1H56.2714H98.8765C118.068 42.2277 137.567 133.246 62.0289 167.496L61.9549 167.522C59.8104 168.275 57.4734 168.275 55.3289 167.522L55.255 167.496Z" />
+                  </clipPath>
+                </defs>
+              </svg>
+            <!-- These divs will use the SVG clipPath defined above -->
+                    <div class="stackedColorBox" id="stackedBox20"></div>
+                    <div class="stackedColorBox" id="stackedBox19"></div>
+                    <div class="stackedColorBox" id="stackedBox18"></div>
+                    <div class="stackedColorBox" id="stackedBox17"></div>
+                    <div class="stackedColorBox" id="stackedBox16"></div>
+        </div>
+        <svg id="decor" xmlns="http://www.w3.org/2000/svg" width="134" height="302" viewBox="0 0 134 302" fill="none">
+            <path d="M62.7257 184.406H63.7257V183.753L63.1277 183.49L62.7257 184.406ZM20.8043 1V0H20.1755L19.903 0.566706L20.8043 1ZM62.7257 290.52L62.9682 291.49L63.7257 291.3V290.52H62.7257ZM20.8043 301L20.5617 300.03L20.8043 302V301ZM112.354 301V302L112.596 300.03L112.354 301ZM70.4323 290.52H69.4323V291.3L70.1898 291.49L70.4323 290.52ZM70.4323 184.406L70.0303 183.49L69.4323 183.753V184.406H70.4323ZM112.354 1L113.255 0.566706L112.983 0H112.354V1ZM63.1143 175.358L62.7014 176.268L62.7415 176.287L62.7831 176.301L63.1143 175.358ZM26.2667 8.86133V7.86133H25.6292L25.3601 8.43931L26.2667 8.86133ZM63.1883 175.384L63.5196 174.44L63.5196 174.44L63.1883 175.384ZM69.8143 175.384L69.483 174.44L69.483 174.44L69.8143 175.384ZM69.8883 175.358L70.2195 176.301L70.2611 176.287L70.3012 176.268L69.8883 175.358ZM106.736 8.86133L107.642 8.43931L107.373 7.86133H106.736V8.86133ZM63.1277 183.49C20.5713 164.807 4.79517 130.69 2.34771 95.5157C-0.104031 60.2801 10.8386 24.0365 21.7055 1.43329L19.903 0.566706C8.93589 23.3783 -2.13023 59.9731 0.352532 95.6546C2.83957 131.397 18.9412 166.276 62.3237 185.322L63.1277 183.49ZM63.7257 290.52V184.406H61.7257V290.52H63.7257ZM21.0468 301.97L62.9682 291.49L62.4831 289.55L20.5617 300.03L21.0468 301.97ZM62.7257 300H20.8043V302H62.7257V300ZM112.354 300H62.7257V302H112.354V300ZM70.1898 291.49L112.111 301.97L112.596 300.03L70.6749 289.55L70.1898 291.49ZM69.4323 184.406V290.52H71.4323V184.406H69.4323ZM111.452 1.43329C122.319 24.0365 133.262 60.2801 130.81 95.5157C128.363 130.69 112.587 164.807 70.0303 183.49L70.8343 185.322C114.217 166.276 130.318 131.397 132.805 95.6546C135.288 59.9731 124.222 23.3783 113.255 0.566706L111.452 1.43329ZM63.8821 2H112.354V0H63.8821V2ZM20.8043 2H63.8821V0H20.8043V2ZM63.5273 174.447C26.1752 157.511 12.3154 126.579 10.1649 94.6586C8.01075 62.6849 17.6255 29.7942 27.1733 9.28334L25.3601 8.43931C15.7165 29.1561 5.98622 62.3882 8.16938 94.7931C10.3561 127.251 24.5159 158.954 62.7014 176.268L63.5273 174.447ZM63.5196 174.44L63.4456 174.414L62.7831 176.301L62.8571 176.327L63.5196 174.44ZM69.483 174.44C67.553 175.118 65.4497 175.118 63.5196 174.44L62.857 176.327C65.216 177.155 67.7867 177.155 70.1456 176.327L69.483 174.44ZM69.557 174.414L69.483 174.44L70.1456 176.327L70.2195 176.301L69.557 174.414ZM105.829 9.28334C115.377 29.7942 124.992 62.6849 122.838 94.6586C120.687 126.579 106.827 157.511 69.4753 174.447L70.3012 176.268C108.487 158.954 122.646 127.251 124.833 94.7931C127.016 62.3882 117.286 29.1561 107.642 8.43931L105.829 9.28334ZM64.1308 9.86133H106.736V7.86133H64.1308V9.86133ZM26.2667 9.86133H64.1308V7.86133H26.2667V9.86133Z" fill="#3D3D3D"/>
+          </svg>
+  </div>
+</div>
+  <div id="filter">
+    <h2>Add your own ingredients</h2>
+
+    <div id="colorfilter">
+        <div class="colorBox" id="box16">
+            <span class="deleteBox" onclick="clearBoxColor(16)">🗑️</span>
+            <input type="color" id="colorPicker16" class="color-picker">
+        </div>
+        <div class="colorBox hidden" id="box17">
+            <span class="deleteBox" onclick="deleteBox(17)">🗑️</span>
+            <input type="color" id="colorPicker17" class="color-picker">
+        </div>
+        <div class="colorBox hidden" id="box18">
+            <span class="deleteBox" onclick="deleteBox(18)">🗑️</span>
+            <input type="color" id="colorPicker18" class="color-picker">
+        </div>
+        <div class="colorBox hidden" id="box19">
+            <span class="deleteBox" onclick="deleteBox(19)">🗑️</span>
+            <input type="color" id="colorPicker19" class="color-picker">
+        </div>
+        <div class="colorBox hidden" id="box20">
+            <span class="deleteBox" onclick="deleteBox(20)">🗑️</span>
+            <input type="color" id="colorPicker20" class="color-picker">
+        </div>
+            <button id="addbutton" onclick="addColorBox()">+</button>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="myModal" class="modal">
+<div class="modal-content">
+    <span class="close">&times;</span>
+    <img id="modalImage" src="" alt="Selected Image">
+    <p id="modalInfo"></p>
+    <div id="colorContainer"></div>
+</div>
+</div>
+</div>
+<script>
+    let selectedColors = []
+
+    // Function to get color by art type
+    function getColorByArtType(TypesofArt) {
+        switch (TypesofArt) {
+            case 'Sculpture':
+                return 'red';
+            case 'Painting':
+                return 'blue';
+            case 'Decorative Art':
+                return 'green';
+            case 'Drawing':
+                return 'yellow';
+            case 'New media':
+                return 'pink';
+            case 'Photograph':
+                return 'purple';
+            case 'Print':
+                return 'grey';
+            case 'Volume':
+                return 'orange';
+        }
+    }
+
+    function colorDifference(color1, color2) {
+        const r1 = parseInt(color1.slice(1, 3), 16);
+        const g1 = parseInt(color1.slice(3, 5), 16);
+        const b1 = parseInt(color1.slice(5, 7), 16);
+
+        const r2 = parseInt(color2.slice(1, 3), 16);
+        const g2 = parseInt(color2.slice(3, 5), 16);
+        const b2 = parseInt(color2.slice(5, 7), 16);
+
+        const dr = r1 - r2;
+        const dg = g1 - g2;
+        const db = b1 - b2;
+
+        return Math.sqrt(dr * dr + dg * dg + db * db);
+    }
+
+    // Function to check color similarity
+    function isColorSimilar(hex1, hex2) {
+          let threshold = 10;
+          let rgb1 = hexToRgb(hex1);
+          let rgb2 = hexToRgb(hex2);
+
+          let diffR = Math.abs(rgb1.r - rgb2.r);
+          let diffG = Math.abs(rgb1.g - rgb2.g);
+          let diffB = Math.abs(rgb1.b - rgb2.b);
+
+          return diffR <= threshold && diffG <= threshold && diffB <= threshold;
+        }
+
+        // Function to convert hex to RGB
+        function hexToRgb(hex) {
+          let bigint = parseInt(hex.slice(1), 16);
+          return {
+            r: (bigint >> 16) & 255,
+            g: (bigint >> 8) & 255,
+            b: bigint & 255
+          };
+        }
+
+
+let selectedArtType = 'all';
+
+function filterBySelectedColors() {
+    const tolerance = 10;
+
+    d3.selectAll('circle').style('display', function() {
+        const circle = d3.select(this);
+        const artType = circle.attr('data-art-type');
+        const circleColors = circle.attr('data-colors').split(', ');
+
+        const isCorrectType = (selectedArtType === 'all' || artType === selectedArtType);
+        let isColorMatched = (selectedColors.length === 0);
+
+        if (isCorrectType) {
+            selectedColors.forEach(selectedColor => {
+                circleColors.forEach(circleColor => {
+                    if (colorDifference(circleColor, selectedColor) < tolerance) {
+                        isColorMatched = true;
+                    }
+                });
+            });
+            return isColorMatched ? 'block' : 'none';
+        }
+        return 'none';
+    });
+}
+
+    d3.selectAll('.img-container circle').each(function() {
+        const dataColor = d3.select(this).attr('data-color');
+        console.log(data-color);
+    });
+
+
+    document.querySelectorAll('.tablinks').forEach(button => {
+    button.addEventListener('click', function() {
+        document.querySelectorAll('.tablinks').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        selectedArtType = this.getAttribute('data-value');
+        console.log('Selected Art Type:', selectedArtType); // เพิ่ม console.log ตรงนี้
+        filterBySelectedColors(); // กรองภาพตามประเภทศิลปะที่เลือก
+    });
+});
+
+
+   
+d3.selectAll('.color-picker').on('input', function() {
+    const selectedColor = this.value.toUpperCase();
+    if (!selectedColors.includes(selectedColor)) {
+        selectedColors.push(selectedColor);
+    }
+    filterBySelectedColors();
+});
+
+
+
+function onColorBoxClick(id) {
+    const colorPicker = document.getElementById(`colorPicker${id}`);
+    colorPicker.style.display = 'block'; // แสดง color picker
+
+    // กำหนดฟังก์ชันเมื่อมีการเปลี่ยนแปลงสี
+    colorPicker.onchange = function() {
+        const newColor = this.value.toUpperCase();
+        updateSelectedColors(id, newColor); // อัปเดตรายการสีที่เลือก
+        updateColorBoxDisplay(id, newColor); // อัปเดตการแสดงผลของกล่องสี
+        filterBySelectedColors(); // กรองอีกครั้งด้วยสีใหม่
+    };
+}
+
+function updateSelectedColors(id, newColor) {
+    // อัปเดตสีในรายการ selectedColors
+    if (selectedColors.length >= id) {
+        selectedColors[id - 1] = newColor;
+    }
+}
+
+// อัปเดตการแสดงผลของกล่องสี
+function updateColorBoxDisplay(id, color) {
+    const box = document.getElementById(`box${id}`);
+    box.style.backgroundColor = color;
+
+    const stackedBox = document.getElementById(`stackedBox${id}`);
+    if (stackedBox) {
+        stackedBox.style.backgroundColor = color;
+    }
+}
+
+// เพิ่ม Event Listener ให้กล่องสี
+for (let i = 1; i <= 20; i++) {
+    document.getElementById(`box${i}`).addEventListener('click', function() {
+        onColorBoxClick(i);
+    });
+}
+
+function addColorBox() {
+    for (let i = 1; i <= 20; i++) {
+        const box = document.getElementById(`box${i}`);
+        if (box.classList.contains("hidden")) {
+            if (i === 1 || document.getElementById(`box${i-1}`).style.backgroundColor !== "") {
+                box.classList.remove("hidden");
+                return;
+            }
+        }
+    }
+    alert("Cannot add new color box. Previous box is empty or maximum number of color boxes reached.");
+}
+
+d3.selectAll('.color-picker').on('input', function() {
+    const id = this.id.replace('colorPicker', '');
+    const selectedColor = this.value.toUpperCase();
+    if (!selectedColors.includes(selectedColor)) {
+        selectedColors.push(selectedColor);
+    }
+    updateColorBoxDisplay(id, selectedColor);
+    filterBySelectedColors();
+});
+
+
+function clearBoxColor(id) {
+    const box = document.getElementById(`box${id}`);
+    box.style.backgroundColor = ''; 
+
+    const colorPicker = document.getElementById(`colorPicker${id}`);
+    colorPicker.style.display = 'block'; 
+
+    const stackedBox = document.getElementById(`stackedBox${id}`);
+    if (stackedBox) {
+        stackedBox.style.backgroundColor = '';
+        
+    }
+
+    // Clear and hide subsequent boxes
+    for (let i = id + 1; i <= 5; i++) {
+        const nextBox = document.getElementById(`box${i}`);
+        nextBox.style.backgroundColor = '';
+        nextBox.classList.add("hidden");
+
+        const nextStackedBox = document.getElementById(`stackedBox${i}`);
+        if (nextStackedBox) {
+            nextStackedBox.style.backgroundColor = '';
+        }
+
+        const nextColorPicker = document.getElementById(`colorPicker${i}`);
+        nextColorPicker.style.display = 'block';
+    }
+
+    filterBySelectedColors();
+}
+    function deleteBox(id) {
+    const box = document.getElementById(`box${id}`);
+    box.classList.add("hidden");
+
+    clearBoxColor(id);
+
+    // Clear and hide subsequent boxes
+    for (let i = id + 1; i <= 5; i++) {
+        clearBoxColor(i);
+        document.getElementById(`box${i}`).classList.add("hidden");
+    }
+}
+
+    d3.selectAll('.color-picker').on('input', function() {
+        const id = this.id.replace('colorPicker', '');
+        const selectedColor = this.value.toUpperCase();
+        if (!selectedColors.includes(selectedColor)) {
+            selectedColors.push(selectedColor);
+        }
+        updateColorBoxDisplay(id, selectedColor);
+        filterBySelectedColors();
+    });
+
+    for (let i = 1; i <= 5; i++) {
+        document.getElementById(`box${i}`).addEventListener('dblclick', function() {
+            clearBoxColor(i);
+        });
+    }
+    
+// Create a function to generate color boxes
+function createColorBox(container, color) {
+    const colorBox = document.createElement("div");
+    colorBox.classList.add("color-box");
+    colorBox.style.backgroundColor = color;
+
+    // Show color code on hover
+    colorBox.addEventListener("mouseover", function () {
+        colorBox.textContent = color;
+    });
+
+    // Hide color code on mouseout
+    colorBox.addEventListener("mouseout", function () {
+        colorBox.textContent = "";
+    });
+
+    container.appendChild(colorBox);
+}
+
+// Function to show modal
+
+function showModal(imageUrl, info, colors) {
+    const modal = document.getElementById('myModal');
+    const modalImage = document.getElementById('modalImage');
+    const modalInfo = document.getElementById('modalInfo');
+    const colorContainer = document.getElementById('colorContainer');
+
+    // Set the image and information
+    modalImage.src = imageUrl;
+    modalInfo.textContent = info; // Change text content
+
+    // Clear out any existing color swatches
+    colorContainer.innerHTML = '';
+
+    // Create color swatches for each color
+    // Create color swatches for each color with custom size
+    hexColorsForThisCircle.forEach(color => {
+    const colorSwatch = document.createElement('div');
+    colorSwatch.className = 'color-swatch';
+    colorSwatch.style.backgroundColor = color;
+    colorSwatch.style.width = '40px'; // กำหนดความกว้าง
+    colorSwatch.style.height = '40px'; // กำหนดความสูง
+    colorContainer.appendChild(colorSwatch);
+});
+
+    // Display the modal
+    modal.style.display = 'block';
+}
+
+    // Close the modal when clicking anywhere outside of the modal
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    };
+
+// Close the modal when clicking anywhere outside of the modal
+window.onclick = function(event) {
+    const modal = document.getElementById('myModal');
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
+};
+
+
+// Load the SVG file
+d3.xml('SCULPTURE GARDEN.svg').then(svgData => {
+
+    const svgContainer = document.getElementById("svg-container");
+    svgContainer.appendChild(svgData.documentElement);
+
+
+    d3.csv('Finaldata.csv').then(function(data) {
+        data.forEach(function(d, index) {
+            console.log("Room ID from CSV:", d.room); // ตรวจสอบข้อมูลจาก CSV
+            const roomGroup = d3.select(`#${d.room}`);
+            console.log("Selected Room Group:", roomGroup.node()); // ตรวจสอบว่าเลือก group ถูกต้องหรือไม่
+
+            if (!roomGroup.empty()) {
+                // Calculate the bounding box of the roomGroup
+                const roomGroupElement = roomGroup.node(); // Get the DOM element
+                const roomGroupBBox = roomGroupElement.getBBox();
+
+                // Use the bounding box dimensions
+                const roomGroupWidth = roomGroupBBox.width;
+                const roomGroupHeight = roomGroupBBox.height;
+
+                // Calculate random coordinates within the roomGroup
+                const randomX = roomGroupBBox.x + Math.random() * roomGroupWidth;
+                const randomY = roomGroupBBox.y + Math.random() * roomGroupHeight;
+                Vibrant.from(d.iiifthumburl).getPalette(function(err, palette) {
+            if (!err) {
+                let hexColorsForThisCircle = [];
+                for (const swatch in palette) {
+                    if (palette[swatch] && typeof palette[swatch].getHex === 'function') {
+                        hexColorsForThisCircle.push(palette[swatch].getHex());
+                    }
+                }
+
+                let circle = roomGroup.append("circle")
+                    .attr('cx', randomX)
+                    .attr('cy', randomY)
+                    .attr('r', 4)
+                    .attr('fill', getColorByArtType(d.TypesofArt))
+                    .attr('data-colors', hexColorsForThisCircle.join(', '))
+                    .attr('data-art-type', d.TypesofArt)
+                    .attr('data-site', d.site);
+
+                console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
+
+                // Add click event to open the modal
+                circle.on("click", function() {
+                    // Modal logic
+                    const modal = document.getElementById("myModal");
+                    const modalImage = document.getElementById("modalImage");
+                    const modalInfo = document.getElementById("modalInfo");
+                    const colorContainer = document.getElementById("colorContainer");
+                    const span = document.getElementsByClassName("close")[0];
+
+                    // Set modal content
+                    modalImage.src = d.iiifthumburl; // Load the image
+                    modalInfo.textContent = `Room: ${d.room}\nArt Type: ${d.TypesofArt}\n`;
+
+                    // Clear previous color swatches
+                    colorContainer.innerHTML = '';
+
+                    // Create color swatches for each color
+                    hexColorsForThisCircle.forEach(color => {
+                        const colorSwatch = document.createElement('div');
+                        colorSwatch.className = 'color-swatch';
+                        colorSwatch.style.backgroundColor = color;
+                        colorContainer.appendChild(colorSwatch);
+                    });
+
+                    // Display the modal
+                    modal.style.display = "block";
+
+                    // Close modal when clicking the close button or outside the modal
+                    span.onclick = function() {
+                        modal.style.display = "none";
+                    }
+
+                    window.onclick = function(event) {
+                        if (event.target == modal) {
+                            modal.style.display = "none";
+                        }
+                    }
+                });
+
+                    // Log the color data for this circle
+                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
+                } else {
+                    console.error("Error at index", index, "with URL:", d.iiifthumburl, "Error:", err);
+                }
+            });
+        } else {
+            console.warn("Room group not found for", d.room);
+        }
+    });
+  });
+});
+
+// Function to filter art by type
+function filterArtByType(selectedArtType) {
+    d3.selectAll('circle')
+        .style('display', function() {
+            const artType = d3.select(this).attr('data-art-type');
+            return (selectedArtType === 'all' || artType === selectedArtType) ? 'block' : 'none';
+        });
+}
+
+// Add event listeners to toggle buttons
+document.querySelectorAll('.tablinks').forEach(button => {
+    button.addEventListener('click', function() {
+        // Remove the 'active' class from all buttons
+        document.querySelectorAll('.tablinks').forEach(btn => btn.classList.remove('active'));
+        
+        // Add the 'active' class to the clicked button
+        this.classList.add('active');
+        
+        const selectedArtType = this.getAttribute('data-value');
+        filterArtByType(selectedArtType); // Call the filter function
+    });
+});
+       
+
+// Function to open a tab and filter the art
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  
+  // Hide all tab content
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  
+  // Remove 'active' class from all tab links
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  
+  // Show the current tab content
+  var selectedTabContent = document.getElementById(tabName);
+  if (selectedTabContent) {
+    selectedTabContent.style.display = "block";
+  } else {
+    console.error(`No element with id '${tabName}' was found.`);
+  }
+  
+  // Add 'active' class to the clicked tab/button
+  if (evt.currentTarget) {
+    evt.currentTarget.className += " active";
+  } else {
+    console.error("Event target is not available.");
+  }
+}
+// JavaScript for handling accordions
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+      panel.style.maxHeight = panel.scrollHeight + "px";
+    } 
+  });
+}
+
+// JavaScript for handling the dropdown
+var dropdownBtn = document.getElementsByClassName("dropdown-btn")[0];
+dropdownBtn.addEventListener("click", function() {
+  this.classList.toggle("active");
+  var dropdownContent = this.nextElementSibling;
+  if (dropdownContent.style.display === "block") {
+    dropdownContent.style.display = "none";
+  } else {
+    dropdownContent.style.display = "block";
+  }
+});
+
+    </script>
+  </body>
+</html>
