@@ -5,41 +5,132 @@
   <title>Vibrant.js example</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <script src="libraries/vibrant.js"></script>
-
   </head>
   <style>
+  
+@import url('https://fonts.googleapis.com/css?family=Playfair Display&display=swap');
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Playfair Display', sans-serif; /* You can change the font-family to match your design */
+}
+
+h1 {
+  color: #FCA311;
+  font-weight: 900;
+  font-size: 60px;
+  text-align: center;
+}  
+h2{
+  color: white;
+  font-weight: 600;
+  font-size: 48px;
+  text-align: center;
+}
+h3{
+  text-align: center;
+  font-weight: 500;
+  font-size: 32px;
+}
+
+h4{
+  color: white;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 400;
+}
+
+h5 {
+  color:black;
+  font-weight: 400;
+  font-size: 20px;
+  align-items:center;
+}
+h6{
+  color: black;
+  font-weight: 600;
+  font-size: 48px;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+p{
+  color:black;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: center;
+}
+#scroll{
+    position: absolute;
+  bottom: 20px; /* Adjust this to place it where you want */
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 2; /* This ensures it's above the Lottie animation */
+}
+
+#intro {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color:black;
+  color: white;
+  z-index: 10;
+  text-align: center;
+}
+#content-intro {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #e5e5e5;
+  z-index: 10;
+}
+#dot-matrix-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap:40px;
+}
+.svg-container svg {
+    transform: rotateX(45deg) rotateZ(45deg);
+    transform-origin: center center; /* Adjust as needed */
+}
+#guide{
+    margin-bottom: 60px;
+}
+
 .column {
   float: left;
   width: 33.33%;
-  align-items: end;
+}
+.column:first-child {
+  display: flex;
+  flex-direction: column; /* or row, depending on your layout */
+  justify-content: center; /* Centers children horizontally in the container */
+  align-items: center; /* Centers children vertically in the container */
+}
+
+
+.column:last-child {
+  text-align: right; /* Aligns content to the right */
+  align-items: flex-end; 
 }
 
 /* Clear floats after the columns */
 .row:after {
   content: "";
-  display: table;
   clear: both;
 }
-svg{
-    transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg);
 
-}
-#loading {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            background: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        button {
-            width: 300px;
-            height: 200px;
+button {
+  width: 300px;
+  height: 200px;
   border: none; /* No borders */
   padding: 15px 32px; /* Padding around the text */
   text-align: center; /* Centered text */
@@ -47,60 +138,110 @@ svg{
   display: inline-block; /* Inline block level element */
   margin: 4px 2px; /* Margins around the button */
   cursor: pointer; /* Pointer cursor on hover */
-  border-radius: 4px; /* Rounded corners */
+  background-color: transparent;
+}
+#svg-container8{
+    width: 500px;
+    height: 250px;
 }
 
+#svg-container1{
+    width: 250px;
+    height: 250px;
+}
+
+#svg-container2,#svg-container3{
+    width: 400px;
+    height: 250px;
+}
 /* Add a hover effect for buttons */
 button:hover {
-  background-color: #45a049; /* Darker green background on hover */
+  background-color: #FCA311; /* Darker green background on hover */
+}
+.svg-container {
+  transform: rotateX(45deg) rotateZ(45deg);
+}
+#content{
+    margin-top: 40px;
+    background-color: #e5e5e5;
 }
 
+.floor{
+    margin: 60px;
+}
 
-  </style>
+</style>
   <body>
+    <div id="body">
     <!-- <div id="loading">Loading...</div> -->
-
-    <section id="intro">
+<div id="intro">
         <div class="intro-content">
             <div id="header">
-            <h1>The discover of National Gallery of Art</h1>
+            <h1>ArtSip</h1>
         </div>
-            <h4>Discover how Citibike is used across Manhattan's diverse landscapes.</h4>
-            <div id="view">
-            <p>Select your view</p>
-        </div>
+            <h4>The discover of National Gallery of Art.</h4>
+          
             <div id="animation">
             <div id="lottie-animation"></div>
         </div>
             <div id="scroll">
-                <h5>Scroll to explore</h5>
+                <h7>Scroll to explore</h7>
             </div>
         </div>
-    </section>
+    </div>
 
-<div class="row">
-<div class="column" >
-    <button id="svg-container1" href=""></button>
+<div id="content-intro">
+    <h3> There are 2,547 art works in National Gallery of Art that you can discover</h3>
+    <div id="dot-matrix-container">
+        <h5 >Here is the proportion of the Art Works</h5>
+    
+        <svg width="300" height="300"></svg>
+        <div id="legend"></div>
+    </div>
+    
 </div>
+
+<div class="content">
+<div id="guide">
+    <h6> Let's discover the National Gallery of Art!</h6>
+    <p> Choose a floor plan</p>
+</div>
+
+<div class="floor">
 <div class="column" >
-    <a id="svg-container2" href="page1.html"></a>
-    <button id="svg-container3"></button>
+    <button class="svg-container" id="svg-container1" onclick="window.location.href='page1.html'">
+        <img src="Sclupture Garden.svg" alt="Sculpture Garden">
+      </button>
+    </div>
+<div class="column" >
+    <button class="svg-container" id="svg-container2" onclick="window.location.href='page2.html'">
+        <img src="West Building, Main floor.svg" alt="WM">
+      </button>
+    
+      <button class="svg-container" id="svg-container3" onclick="window.location.href='page3.html'">
+        <img src="West Building, Ground floor.svg" alt="WG">
+      </button>
     </div>
     <div class="column" >
-        <button id="svg-container8"></button>
-        <button id="svg-container7"></button>
-        <button id="svg-container6"></button>
-        <button id="svg-container5"></button>
-        <button id="svg-container4"></button>
+        <button class="svg-container" id="svg-container4" onclick="window.location.href='page4.html'">
+            <img src="East Building, Tower.svg" alt="ET">
+          </button>
+          <button class="svg-container" id="svg-container5" onclick="window.location.href='page5.html'">
+            <img src="East Building, Upper Level.svg" alt="EU">
+          </button>
+          <button class="svg-container" id="svg-container6" onclick="window.location.href='page6.html'">
+            <img src="East Building, Mezzanine.svg" alt="EM">
+          </button>
+          <button class="svg-container" id="svg-container7" onclick="window.location.href='page7.html'">
+            <img src="East Building, Ground Level.svg" alt="EG">
+          </button>
+          <button class="svg-container" id="svg-container8" onclick="window.location.href='page8.html'">
+            <img src="East Building, Concourse.svg" alt="EC">
+          </button>
     </div>
 </div>
+</div>
 
-<div id="dot-matrix-container">
-    <h5>Proportion of Art types</h5>
-
-    <svg width="300" height="180"></svg>
-    <div id="legend"></div>
-    <h6>Ground Floor: West Building</h6>
 </div>
 
 <script>
@@ -111,773 +252,7 @@ window.addEventListener('load', function () {
         loading.style.display = 'none';
     }, 3000); 
 });
-let selectedColors = []
 
-// Function to get color by art type
-function getColorByArtType(TypesofArt) {
-    switch (TypesofArt) {
-        case 'Sculpture':
-            return 'red';
-        case 'Painting':
-            return 'blue';
-        case 'Decorative Art':
-            return 'green';
-        case 'Drawing':
-            return 'yellow';
-        case 'New media':
-            return 'pink';
-        case 'Photograph':
-            return 'purple';
-        case 'Print':
-            return 'grey';
-        case 'Volume':
-            return 'orange';
-    }
-}
-
-// Load the SVG file- Sculpture
-d3.xml('SCULPTURE GARDEN.svg').then(svgData => {
-
-const svgContainer = document.getElementById("svg-container1");
-svgContainer.appendChild(svgData.documentElement);
-
-
-d3.csv('Finaldata.csv').then(function(data) {
-    data.forEach(function(d, index) {
-        console.log("Room ID from CSV:", d.room); // ตรวจสอบข้อมูลจาก CSV
-        const roomGroup = d3.select(`#${d.room}`);
-        console.log("Selected Room Group:", roomGroup.node()); // ตรวจสอบว่าเลือก group ถูกต้องหรือไม่
-
-        if (!roomGroup.empty()) {
-            // Calculate the bounding box of the roomGroup
-            const roomGroupElement = roomGroup.node(); // Get the DOM element
-            const roomGroupBBox = roomGroupElement.getBBox();
-
-            // Use the bounding box dimensions
-            const roomGroupWidth = roomGroupBBox.width;
-            const roomGroupHeight = roomGroupBBox.height;
-
-            // Calculate random coordinates within the roomGroup
-            const randomX = roomGroupBBox.x + Math.random() * roomGroupWidth;
-            const randomY = roomGroupBBox.y + Math.random() * roomGroupHeight;
-
-            Vibrant.from(d.iiifthumburl).getPalette(function(err, palette) {
-                if (!err) {
-                    let hexColorsForThisCircle = [];
-                    for (const swatch in palette) {
-                        if (palette[swatch] && typeof palette[swatch].getHex === 'function') {
-                            hexColorsForThisCircle.push(palette[swatch].getHex());
-                        }
-                    }
-
-                    // Append a circle to the selected group
-                    let circle = roomGroup.append("circle")
-                        .attr('cx', randomX)
-                        .attr('cy', randomY)
-                        .attr('r', 2)
-                        .attr('fill', getColorByArtType(d.TypesofArt))
-                        .attr('data-colors', hexColorsForThisCircle.join(', '))
-                        .attr('data-art-type', d.TypesofArt)
-                        .attr('data-site', d.site);
-                        
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-
-
-                    // Add click event to open the modal
-                    circle.on("click", function() {
-                        // Modal logic
-                        const modal = document.getElementById("myModal");
-                        const modalImage = document.getElementById("modalImage");
-                        const modalInfo = document.getElementById("modalInfo");
-                        const span = document.getElementsByClassName("close")[0];
-
-                        // Set modal content
-                        modalImage.src = d.iiifthumburl; // Load the image
-                        modalInfo.textContent = `Room: ${d.room}\nArt Type: ${d.TypesofArt}\nColors: ${hexColorsForThisCircle.join(', ')}`;
-                        circle.on("click", function() {
-                        let modalInfo = `${d.title_x}\nby: ${d.forwarddisplayname}\nYear: ${d.displaydate_x}`;
-                        let site = d.site;
-                        let description = d.description;
-                        showModal(d.iiifthumburl, modalInfo, hexColorsForThisCircle, site, description);
-                    });
-                        // Display the modal
-                        modal.style.display = "block";
-
-                        // Close modal when clicking the close button or outside the modal
-                        span.onclick = function() {
-                            modal.style.display = "none";
-                        }
-
-                        window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                        }
-                    });
-
-                    // Log the color data for this circle
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-                } else {
-                    console.error("Error at index", index, "with URL:", d.iiifthumburl, "Error:", err);
-                }
-            });
-        } else {
-            console.warn("Room group not found for", d.room);
-        }
-    });
-});
-});
-
-// Load the SVG file- West main
-d3.xml('West bd_ Ground flr_ Right.svg').then(svgData => {
-
-const svgContainer = document.getElementById("svg-container2");
-svgContainer.appendChild(svgData.documentElement);
-
-
-d3.csv('Finaldata.csv').then(function(data) {
-    data.forEach(function(d, index) {
-        console.log("Room ID from CSV:", d.room); // ตรวจสอบข้อมูลจาก CSV
-        const roomGroup = d3.select(`#${d.room}`);
-        console.log("Selected Room Group:", roomGroup.node()); // ตรวจสอบว่าเลือก group ถูกต้องหรือไม่
-
-        if (!roomGroup.empty()) {
-            // Calculate the bounding box of the roomGroup
-            const roomGroupElement = roomGroup.node(); // Get the DOM element
-            const roomGroupBBox = roomGroupElement.getBBox();
-
-            // Use the bounding box dimensions
-            const roomGroupWidth = roomGroupBBox.width;
-            const roomGroupHeight = roomGroupBBox.height;
-
-            // Calculate random coordinates within the roomGroup
-            const randomX = roomGroupBBox.x + Math.random() * roomGroupWidth;
-            const randomY = roomGroupBBox.y + Math.random() * roomGroupHeight;
-
-            Vibrant.from(d.iiifthumburl).getPalette(function(err, palette) {
-                if (!err) {
-                    let hexColorsForThisCircle = [];
-                    for (const swatch in palette) {
-                        if (palette[swatch] && typeof palette[swatch].getHex === 'function') {
-                            hexColorsForThisCircle.push(palette[swatch].getHex());
-                        }
-                    }
-
-                    // Append a circle to the selected group
-                    let circle = roomGroup.append("circle")
-                        .attr('cx', randomX)
-                        .attr('cy', randomY)
-                        .attr('r', 2)
-                        .attr('fill', getColorByArtType(d.TypesofArt))
-                        .attr('data-colors', hexColorsForThisCircle.join(', '))
-                        .attr('data-art-type', d.TypesofArt)
-                        .attr('data-site', d.site);
-                        
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-
-
-                    // Add click event to open the modal
-                    circle.on("click", function() {
-                        // Modal logic
-                        const modal = document.getElementById("myModal");
-                        const modalImage = document.getElementById("modalImage");
-                        const modalInfo = document.getElementById("modalInfo");
-                        const span = document.getElementsByClassName("close")[0];
-
-                        // Set modal content
-                        modalImage.src = d.iiifthumburl; // Load the image
-                        modalInfo.textContent = `Room: ${d.room}\nArt Type: ${d.TypesofArt}\nColors: ${hexColorsForThisCircle.join(', ')}`;
-                        circle.on("click", function() {
-                        let modalInfo = `${d.title_x}\nby: ${d.forwarddisplayname}\nYear: ${d.displaydate_x}`;
-                        let site = d.site;
-                        let description = d.description;
-                        showModal(d.iiifthumburl, modalInfo, hexColorsForThisCircle, site, description);
-                    });
-                        // Display the modal
-                        modal.style.display = "block";
-
-                        // Close modal when clicking the close button or outside the modal
-                        span.onclick = function() {
-                            modal.style.display = "none";
-                        }
-
-                        window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                        }
-                    });
-
-                    // Log the color data for this circle
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-                } else {
-                    console.error("Error at index", index, "with URL:", d.iiifthumburl, "Error:", err);
-                }
-            });
-        } else {
-            console.warn("Room group not found for", d.room);
-        }
-    });
-});
-});
-
-// Load the SVG file- West ground
-d3.xml('WEST-2.svg').then(svgData => {
-
-const svgContainer = document.getElementById("svg-container3");
-svgContainer.appendChild(svgData.documentElement);
-
-
-d3.csv('Finaldata.csv').then(function(data) {
-    data.forEach(function(d, index) {
-        console.log("Room ID from CSV:", d.room); // ตรวจสอบข้อมูลจาก CSV
-        const roomGroup = d3.select(`#${d.room}`);
-        console.log("Selected Room Group:", roomGroup.node()); // ตรวจสอบว่าเลือก group ถูกต้องหรือไม่
-
-        if (!roomGroup.empty()) {
-            // Calculate the bounding box of the roomGroup
-            const roomGroupElement = roomGroup.node(); // Get the DOM element
-            const roomGroupBBox = roomGroupElement.getBBox();
-
-            // Use the bounding box dimensions
-            const roomGroupWidth = roomGroupBBox.width;
-            const roomGroupHeight = roomGroupBBox.height;
-
-            // Calculate random coordinates within the roomGroup
-            const randomX = roomGroupBBox.x + Math.random() * roomGroupWidth;
-            const randomY = roomGroupBBox.y + Math.random() * roomGroupHeight;
-
-            Vibrant.from(d.iiifthumburl).getPalette(function(err, palette) {
-                if (!err) {
-                    let hexColorsForThisCircle = [];
-                    for (const swatch in palette) {
-                        if (palette[swatch] && typeof palette[swatch].getHex === 'function') {
-                            hexColorsForThisCircle.push(palette[swatch].getHex());
-                        }
-                    }
-
-                    // Append a circle to the selected group
-                    let circle = roomGroup.append("circle")
-                        .attr('cx', randomX)
-                        .attr('cy', randomY)
-                        .attr('r', 2)
-                        .attr('fill', getColorByArtType(d.TypesofArt))
-                        .attr('data-colors', hexColorsForThisCircle.join(', '))
-                        .attr('data-art-type', d.TypesofArt)
-                        .attr('data-site', d.site);
-                        
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-
-
-                    // Add click event to open the modal
-                    circle.on("click", function() {
-                        // Modal logic
-                        const modal = document.getElementById("myModal");
-                        const modalImage = document.getElementById("modalImage");
-                        const modalInfo = document.getElementById("modalInfo");
-                        const span = document.getElementsByClassName("close")[0];
-
-                        // Set modal content
-                        modalImage.src = d.iiifthumburl; // Load the image
-                        modalInfo.textContent = `Room: ${d.room}\nArt Type: ${d.TypesofArt}\nColors: ${hexColorsForThisCircle.join(', ')}`;
-                        circle.on("click", function() {
-                        let modalInfo = `${d.title_x}\nby: ${d.forwarddisplayname}\nYear: ${d.displaydate_x}`;
-                        let site = d.site;
-                        let description = d.description;
-                        showModal(d.iiifthumburl, modalInfo, hexColorsForThisCircle, site, description);
-                    });
-                        // Display the modal
-                        modal.style.display = "block";
-
-                        // Close modal when clicking the close button or outside the modal
-                        span.onclick = function() {
-                            modal.style.display = "none";
-                        }
-
-                        window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                        }
-                    });
-
-                    // Log the color data for this circle
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-                } else {
-                    console.error("Error at index", index, "with URL:", d.iiifthumburl, "Error:", err);
-                }
-            });
-        } else {
-            console.warn("Room group not found for", d.room);
-        }
-    });
-});
-});
-
-// Load the SVG file- East C
-d3.xml('East Building, Concourse.svg').then(svgData => {
-
-const svgContainer = document.getElementById("svg-container4");
-svgContainer.appendChild(svgData.documentElement);
-
-
-d3.csv('Finaldata.csv').then(function(data) {
-    data.forEach(function(d, index) {
-        console.log("Room ID from CSV:", d.room); // ตรวจสอบข้อมูลจาก CSV
-        const roomGroup = d3.select(`#${d.room}`);
-        console.log("Selected Room Group:", roomGroup.node()); // ตรวจสอบว่าเลือก group ถูกต้องหรือไม่
-
-        if (!roomGroup.empty()) {
-            // Calculate the bounding box of the roomGroup
-            const roomGroupElement = roomGroup.node(); // Get the DOM element
-            const roomGroupBBox = roomGroupElement.getBBox();
-
-            // Use the bounding box dimensions
-            const roomGroupWidth = roomGroupBBox.width;
-            const roomGroupHeight = roomGroupBBox.height;
-
-            // Calculate random coordinates within the roomGroup
-            const randomX = roomGroupBBox.x + Math.random() * roomGroupWidth;
-            const randomY = roomGroupBBox.y + Math.random() * roomGroupHeight;
-
-            Vibrant.from(d.iiifthumburl).getPalette(function(err, palette) {
-                if (!err) {
-                    let hexColorsForThisCircle = [];
-                    for (const swatch in palette) {
-                        if (palette[swatch] && typeof palette[swatch].getHex === 'function') {
-                            hexColorsForThisCircle.push(palette[swatch].getHex());
-                        }
-                    }
-
-                    // Append a circle to the selected group
-                    let circle = roomGroup.append("circle")
-                        .attr('cx', randomX)
-                        .attr('cy', randomY)
-                        .attr('r', 2)
-                        .attr('fill', getColorByArtType(d.TypesofArt))
-                        .attr('data-colors', hexColorsForThisCircle.join(', '))
-                        .attr('data-art-type', d.TypesofArt)
-                        .attr('data-site', d.site);
-                        
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-
-
-                    // Add click event to open the modal
-                    circle.on("click", function() {
-                        // Modal logic
-                        const modal = document.getElementById("myModal");
-                        const modalImage = document.getElementById("modalImage");
-                        const modalInfo = document.getElementById("modalInfo");
-                        const span = document.getElementsByClassName("close")[0];
-
-                        // Set modal content
-                        modalImage.src = d.iiifthumburl; // Load the image
-                        modalInfo.textContent = `Room: ${d.room}\nArt Type: ${d.TypesofArt}\nColors: ${hexColorsForThisCircle.join(', ')}`;
-                        circle.on("click", function() {
-                        let modalInfo = `${d.title_x}\nby: ${d.forwarddisplayname}\nYear: ${d.displaydate_x}`;
-                        let site = d.site;
-                        let description = d.description;
-                        showModal(d.iiifthumburl, modalInfo, hexColorsForThisCircle, site, description);
-                    });
-                        // Display the modal
-                        modal.style.display = "block";
-
-                        // Close modal when clicking the close button or outside the modal
-                        span.onclick = function() {
-                            modal.style.display = "none";
-                        }
-
-                        window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                        }
-                    });
-
-                    // Log the color data for this circle
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-                } else {
-                    console.error("Error at index", index, "with URL:", d.iiifthumburl, "Error:", err);
-                }
-            });
-        } else {
-            console.warn("Room group not found for", d.room);
-        }
-    });
-});
-});
-
-// Load the SVG file- East Ground
-d3.xml('East Building, Ground Level.svg').then(svgData => {
-
-const svgContainer = document.getElementById("svg-container5");
-svgContainer.appendChild(svgData.documentElement);
-
-
-d3.csv('Finaldata.csv').then(function(data) {
-    data.forEach(function(d, index) {
-        console.log("Room ID from CSV:", d.room); // ตรวจสอบข้อมูลจาก CSV
-        const roomGroup = d3.select(`#${d.room}`);
-        console.log("Selected Room Group:", roomGroup.node()); // ตรวจสอบว่าเลือก group ถูกต้องหรือไม่
-
-        if (!roomGroup.empty()) {
-            // Calculate the bounding box of the roomGroup
-            const roomGroupElement = roomGroup.node(); // Get the DOM element
-            const roomGroupBBox = roomGroupElement.getBBox();
-
-            // Use the bounding box dimensions
-            const roomGroupWidth = roomGroupBBox.width;
-            const roomGroupHeight = roomGroupBBox.height;
-
-            // Calculate random coordinates within the roomGroup
-            const randomX = roomGroupBBox.x + Math.random() * roomGroupWidth;
-            const randomY = roomGroupBBox.y + Math.random() * roomGroupHeight;
-
-            Vibrant.from(d.iiifthumburl).getPalette(function(err, palette) {
-                if (!err) {
-                    let hexColorsForThisCircle = [];
-                    for (const swatch in palette) {
-                        if (palette[swatch] && typeof palette[swatch].getHex === 'function') {
-                            hexColorsForThisCircle.push(palette[swatch].getHex());
-                        }
-                    }
-
-                    // Append a circle to the selected group
-                    let circle = roomGroup.append("circle")
-                        .attr('cx', randomX)
-                        .attr('cy', randomY)
-                        .attr('r', 2)
-                        .attr('fill', getColorByArtType(d.TypesofArt))
-                        .attr('data-colors', hexColorsForThisCircle.join(', '))
-                        .attr('data-art-type', d.TypesofArt)
-                        .attr('data-site', d.site);
-                        
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-
-
-                    // Add click event to open the modal
-                    circle.on("click", function() {
-                        // Modal logic
-                        const modal = document.getElementById("myModal");
-                        const modalImage = document.getElementById("modalImage");
-                        const modalInfo = document.getElementById("modalInfo");
-                        const span = document.getElementsByClassName("close")[0];
-
-                        // Set modal content
-                        modalImage.src = d.iiifthumburl; // Load the image
-                        modalInfo.textContent = `Room: ${d.room}\nArt Type: ${d.TypesofArt}\nColors: ${hexColorsForThisCircle.join(', ')}`;
-                        circle.on("click", function() {
-                        let modalInfo = `${d.title_x}\nby: ${d.forwarddisplayname}\nYear: ${d.displaydate_x}`;
-                        let site = d.site;
-                        let description = d.description;
-                        showModal(d.iiifthumburl, modalInfo, hexColorsForThisCircle, site, description);
-                    });
-                        // Display the modal
-                        modal.style.display = "block";
-
-                        // Close modal when clicking the close button or outside the modal
-                        span.onclick = function() {
-                            modal.style.display = "none";
-                        }
-
-                        window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                        }
-                    });
-
-                    // Log the color data for this circle
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-                } else {
-                    console.error("Error at index", index, "with URL:", d.iiifthumburl, "Error:", err);
-                }
-            });
-        } else {
-            console.warn("Room group not found for", d.room);
-        }
-    });
-});
-});
-
-// Load the SVG file- East M
-d3.xml('East Building, Mezzanine.svg').then(svgData => {
-
-const svgContainer = document.getElementById("svg-container6");
-svgContainer.appendChild(svgData.documentElement);
-
-
-d3.csv('Finaldata.csv').then(function(data) {
-    data.forEach(function(d, index) {
-        console.log("Room ID from CSV:", d.room); // ตรวจสอบข้อมูลจาก CSV
-        const roomGroup = d3.select(`#${d.room}`);
-        console.log("Selected Room Group:", roomGroup.node()); // ตรวจสอบว่าเลือก group ถูกต้องหรือไม่
-
-        if (!roomGroup.empty()) {
-            // Calculate the bounding box of the roomGroup
-            const roomGroupElement = roomGroup.node(); // Get the DOM element
-            const roomGroupBBox = roomGroupElement.getBBox();
-
-            // Use the bounding box dimensions
-            const roomGroupWidth = roomGroupBBox.width;
-            const roomGroupHeight = roomGroupBBox.height;
-
-            // Calculate random coordinates within the roomGroup
-            const randomX = roomGroupBBox.x + Math.random() * roomGroupWidth;
-            const randomY = roomGroupBBox.y + Math.random() * roomGroupHeight;
-
-            Vibrant.from(d.iiifthumburl).getPalette(function(err, palette) {
-                if (!err) {
-                    let hexColorsForThisCircle = [];
-                    for (const swatch in palette) {
-                        if (palette[swatch] && typeof palette[swatch].getHex === 'function') {
-                            hexColorsForThisCircle.push(palette[swatch].getHex());
-                        }
-                    }
-
-                    // Append a circle to the selected group
-                    let circle = roomGroup.append("circle")
-                        .attr('cx', randomX)
-                        .attr('cy', randomY)
-                        .attr('r', 2)
-                        .attr('fill', getColorByArtType(d.TypesofArt))
-                        .attr('data-colors', hexColorsForThisCircle.join(', '))
-                        .attr('data-art-type', d.TypesofArt)
-                        .attr('data-site', d.site);
-                        
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-
-
-                    // Add click event to open the modal
-                    circle.on("click", function() {
-                        // Modal logic
-                        const modal = document.getElementById("myModal");
-                        const modalImage = document.getElementById("modalImage");
-                        const modalInfo = document.getElementById("modalInfo");
-                        const span = document.getElementsByClassName("close")[0];
-
-                        // Set modal content
-                        modalImage.src = d.iiifthumburl; // Load the image
-                        modalInfo.textContent = `Room: ${d.room}\nArt Type: ${d.TypesofArt}\nColors: ${hexColorsForThisCircle.join(', ')}`;
-                        circle.on("click", function() {
-                        let modalInfo = `${d.title_x}\nby: ${d.forwarddisplayname}\nYear: ${d.displaydate_x}`;
-                        let site = d.site;
-                        let description = d.description;
-                        showModal(d.iiifthumburl, modalInfo, hexColorsForThisCircle, site, description);
-                    });
-                        // Display the modal
-                        modal.style.display = "block";
-
-                        // Close modal when clicking the close button or outside the modal
-                        span.onclick = function() {
-                            modal.style.display = "none";
-                        }
-
-                        window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                        }
-                    });
-
-                    // Log the color data for this circle
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-                } else {
-                    console.error("Error at index", index, "with URL:", d.iiifthumburl, "Error:", err);
-                }
-            });
-        } else {
-            console.warn("Room group not found for", d.room);
-        }
-    });
-});
-});
-
-// Load the SVG file- East U
-d3.xml('East Building, Upper Level.svg').then(svgData => {
-
-const svgContainer = document.getElementById("svg-container7");
-svgContainer.appendChild(svgData.documentElement);
-
-
-d3.csv('Finaldata.csv').then(function(data) {
-    data.forEach(function(d, index) {
-        console.log("Room ID from CSV:", d.room); // ตรวจสอบข้อมูลจาก CSV
-        const roomGroup = d3.select(`#${d.room}`);
-        console.log("Selected Room Group:", roomGroup.node()); // ตรวจสอบว่าเลือก group ถูกต้องหรือไม่
-
-        if (!roomGroup.empty()) {
-            // Calculate the bounding box of the roomGroup
-            const roomGroupElement = roomGroup.node(); // Get the DOM element
-            const roomGroupBBox = roomGroupElement.getBBox();
-
-            // Use the bounding box dimensions
-            const roomGroupWidth = roomGroupBBox.width;
-            const roomGroupHeight = roomGroupBBox.height;
-
-            // Calculate random coordinates within the roomGroup
-            const randomX = roomGroupBBox.x + Math.random() * roomGroupWidth;
-            const randomY = roomGroupBBox.y + Math.random() * roomGroupHeight;
-
-            Vibrant.from(d.iiifthumburl).getPalette(function(err, palette) {
-                if (!err) {
-                    let hexColorsForThisCircle = [];
-                    for (const swatch in palette) {
-                        if (palette[swatch] && typeof palette[swatch].getHex === 'function') {
-                            hexColorsForThisCircle.push(palette[swatch].getHex());
-                        }
-                    }
-
-                    // Append a circle to the selected group
-                    let circle = roomGroup.append("circle")
-                        .attr('cx', randomX)
-                        .attr('cy', randomY)
-                        .attr('r', 2)
-                        .attr('fill', getColorByArtType(d.TypesofArt))
-                        .attr('data-colors', hexColorsForThisCircle.join(', '))
-                        .attr('data-art-type', d.TypesofArt)
-                        .attr('data-site', d.site);
-                        
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-
-
-                    // Add click event to open the modal
-                    circle.on("click", function() {
-                        // Modal logic
-                        const modal = document.getElementById("myModal");
-                        const modalImage = document.getElementById("modalImage");
-                        const modalInfo = document.getElementById("modalInfo");
-                        const span = document.getElementsByClassName("close")[0];
-
-                        // Set modal content
-                        modalImage.src = d.iiifthumburl; // Load the image
-                        modalInfo.textContent = `Room: ${d.room}\nArt Type: ${d.TypesofArt}\nColors: ${hexColorsForThisCircle.join(', ')}`;
-                        circle.on("click", function() {
-                        let modalInfo = `${d.title_x}\nby: ${d.forwarddisplayname}\nYear: ${d.displaydate_x}`;
-                        let site = d.site;
-                        let description = d.description;
-                        showModal(d.iiifthumburl, modalInfo, hexColorsForThisCircle, site, description);
-                    });
-                        // Display the modal
-                        modal.style.display = "block";
-
-                        // Close modal when clicking the close button or outside the modal
-                        span.onclick = function() {
-                            modal.style.display = "none";
-                        }
-
-                        window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                        }
-                    });
-
-                    // Log the color data for this circle
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-                } else {
-                    console.error("Error at index", index, "with URL:", d.iiifthumburl, "Error:", err);
-                }
-            });
-        } else {
-            console.warn("Room group not found for", d.room);
-        }
-    });
-});
-});
-
-// Load the SVG file- East T
-d3.xml('East Building, Tower.svg').then(svgData => {
-
-const svgContainer = document.getElementById("svg-container8");
-svgContainer.appendChild(svgData.documentElement);
-
-
-d3.csv('Finaldata.csv').then(function(data) {
-    data.forEach(function(d, index) {
-        console.log("Room ID from CSV:", d.room); // ตรวจสอบข้อมูลจาก CSV
-        const roomGroup = d3.select(`#${d.room}`);
-        console.log("Selected Room Group:", roomGroup.node()); // ตรวจสอบว่าเลือก group ถูกต้องหรือไม่
-
-        if (!roomGroup.empty()) {
-            // Calculate the bounding box of the roomGroup
-            const roomGroupElement = roomGroup.node(); // Get the DOM element
-            const roomGroupBBox = roomGroupElement.getBBox();
-
-            // Use the bounding box dimensions
-            const roomGroupWidth = roomGroupBBox.width;
-            const roomGroupHeight = roomGroupBBox.height;
-
-            // Calculate random coordinates within the roomGroup
-            const randomX = roomGroupBBox.x + Math.random() * roomGroupWidth;
-            const randomY = roomGroupBBox.y + Math.random() * roomGroupHeight;
-
-            Vibrant.from(d.iiifthumburl).getPalette(function(err, palette) {
-                if (!err) {
-                    let hexColorsForThisCircle = [];
-                    for (const swatch in palette) {
-                        if (palette[swatch] && typeof palette[swatch].getHex === 'function') {
-                            hexColorsForThisCircle.push(palette[swatch].getHex());
-                        }
-                    }
-
-                    // Append a circle to the selected group
-                    let circle = roomGroup.append("circle")
-                        .attr('cx', randomX)
-                        .attr('cy', randomY)
-                        .attr('r', 2)
-                        .attr('fill', getColorByArtType(d.TypesofArt))
-                        .attr('data-colors', hexColorsForThisCircle.join(', '))
-                        .attr('data-art-type', d.TypesofArt)
-                        .attr('data-site', d.site);
-                        
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-
-
-                    // Add click event to open the modal
-                    circle.on("click", function() {
-                        // Modal logic
-                        const modal = document.getElementById("myModal");
-                        const modalImage = document.getElementById("modalImage");
-                        const modalInfo = document.getElementById("modalInfo");
-                        const span = document.getElementsByClassName("close")[0];
-
-                        // Set modal content
-                        modalImage.src = d.iiifthumburl; // Load the image
-                        modalInfo.textContent = `Room: ${d.room}\nArt Type: ${d.TypesofArt}\nColors: ${hexColorsForThisCircle.join(', ')}`;
-                        circle.on("click", function() {
-                        let modalInfo = `${d.title_x}\nby: ${d.forwarddisplayname}\nYear: ${d.displaydate_x}`;
-                        let site = d.site;
-                        let description = d.description;
-                        showModal(d.iiifthumburl, modalInfo, hexColorsForThisCircle, site, description);
-                    });
-                        // Display the modal
-                        modal.style.display = "block";
-
-                        // Close modal when clicking the close button or outside the modal
-                        span.onclick = function() {
-                            modal.style.display = "none";
-                        }
-
-                        window.onclick = function(event) {
-                            if (event.target == modal) {
-                                modal.style.display = "none";
-                            }
-                        }
-                    });
-
-                    // Log the color data for this circle
-                    console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
-                } else {
-                    console.error("Error at index", index, "with URL:", d.iiifthumburl, "Error:", err);
-                }
-            });
-        } else {
-            console.warn("Room group not found for", d.room);
-        }
-    });
-});
-});
 
 document.getElementById('svg-container1').addEventListener('click', function() {
         window.location.href = 'Sculpture Garden.html';
@@ -905,40 +280,43 @@ const totalOccurrences = d3.sum(Object.values(typeCounts));
 
     // Define colorMap here or ensure it's defined outside this snippet
     let colorMap = {
-        "Sculpture": "red",
-        "Painting": "blue",
-        "Decorative Art": "green",
-        "Drawing": "yellow",
-        "New media": "pink",
-        "Photograph": "purple",
-        "Print": "grey",
-        "Volume": "orange",
-        // Add more art types and their colors here
+        "Sculpture": "#ef3c23",
+        "Painting": "#1b4793",
+        "Decorative Art": "#f15a42",
+        "Drawing": "#fac92c",
+        "New media": "#f7b0be",
+        "Photograph": "#ed8e83",
+        "Print": "#cfe5cc",
+        "Volume": "#2178ae",
     };
 
     // Create dot matrix
     const svgDotMatrix = d3.select("#dot-matrix-container svg");
     let row = 0, col = 0;
-    const dotSize = 15;
+    const matrixWidth = 300; // Width of the matrix
+const matrixHeight = 300; // Height of the matrix
+// Assuming a 10x10 grid for simplicity
+const dotsPerRow = Math.sqrt(totalDots); // for square layout
+const dotSpacing = matrixWidth / dotsPerRow; // adjust spacing to fill the width
+const dotSize = dotSpacing - 2; // subtracting 2 pixels for a little space between dots
 
-    // Create dots
-    for (const artType in typeDots) {
-        const dots = typeDots[artType];
-        for (let i = 0; i < dots; i++) {
-            svgDotMatrix.append("circle")
-                .attr("cx", col * (dotSize + 2) + (dotSize / 2))
-                .attr("cy", row * (dotSize + 2) + (dotSize / 2))
-                .attr("r", dotSize / 2)
-                .attr("fill", colorMap[artType])
-                .attr("stroke", "white");
+for (const artType in typeDots) {
+    const dots = typeDots[artType];
+    for (let i = 0; i < dots; i++) {
+        svgDotMatrix.append("circle")
+            .attr("cx", col * dotSpacing + (dotSize / 2))
+            .attr("cy", row * dotSpacing + (dotSize / 2))
+            .attr("r", dotSize / 2)
+            .attr("fill", colorMap[artType])
+            .attr("stroke", "white");
 
-            col++;
-            if (col >= 10) {
-                col = 0;
-                row++;
-            }
+        col++;
+        if (col >= dotsPerRow) {
+            col = 0;
+            row++;
         }
     }
+}
 
     // Create legends
  
@@ -953,7 +331,7 @@ Object.keys(typeDots).forEach(artType => {
             .style("display", "inline-block")
             .style("margin-right", "20px")
             .html(`
-                <div style="display: inline-block; width: ${dotSize}px; height: ${dotSize}px; background-color: ${colorMap[artType]}; border-radius: 50%; margin-right: 5px;"></div>
+                <div style="display: inline-block; width: ${20}px; height: ${20}px; background-color: ${colorMap[artType]}; border-radius: 50%; margin-right: 5px;"></div>
                 ${artType}: ${percentage}%
             `);
     }

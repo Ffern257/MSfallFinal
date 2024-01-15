@@ -9,44 +9,39 @@
 
   </head>
   <body>
-    <div class="body">
-
     <div class="navbar">
-        <img src="National_Gallery_of_Art_logo.svg.png" alt="Logo" height="60px">        
-        <button class="dropdown-btn">West Building Main Floor</button>
+        <button class="dropdown-btn">East Building Concourse</button>
         <div class="dropdown-content">
           <!-- Direct links -->
-          <a class="button-style" href="index.html">Home</a>
-          <a class="button-style" href="page1.html">Sculpture Garden</a>
+          <a class="button-style" href="landingpage.html">Home</a>
+          <a class="button-style" href="SculptureGarden.html">Sculpture Garden</a>
       
           <!-- Submenu Entries for West Building -->
           <button class="accordion">West Building</button>
           <div class="panel">
-            <a class="button-style" href="page2.html">Main Floor</a>
-            <a class="button-style" href="page3.html">Ground Floor</a>
+            <a class="button-style" href="index.html">Main Floor</a>
+            <a class="button-style" href="W-Ground.html">Ground Floor</a>
           </div>
       
           <!-- Submenu Entries for East Building -->
           <button class="accordion">East Building</button>
           <div class="panel">
-            <a class="button-style" href="page4.html">Concourse</a>
-            <a class="button-style" href="page5.html">Ground Level</a>
-            <a class="button-style" href="page6.html">Mezzanine</a>
-            <a class="button-style" href="page7.html">Upper level</a>
-            <a class="button-style" href="page8.html">Tower</a>
+            <a class="button-style" href="index.html">Concourse</a>
+            <a class="button-style" href="E-Ground.html">Ground Level</a>
+            <a class="button-style" href="E-Mezzanine.html">Mezzanine</a>
+            <a class="button-style" href="E-Upper.html">Upper level</a>
+            <a class="button-style" href="E-Tower.html">Tower</a>
           </div>
         </div>
       </div>
-    
 
 <div class="container">
 <div class="columnleft" id="image_container">
     <div id ="title">
-        <h1>West Building Main Floor</h1>
+        <h1>East Building Tower</h1>
     </div>
     <div id="plan">
-    <div id="svg-container">
-</div>
+    <div id="svg-container"></div>
 </div>
     <p> Click dot to discover your drink</p>
 </div>
@@ -58,13 +53,10 @@
         <!-- Tab links -->
         <div class="tab">
             <button class="tablinks" onclick="openTab(event, 'Overview')" data-value="all" id="defaultOpen">
-                <img src="Overall.svg" alt="Overview Icon">Overview
-                </button>
-            <button class="tablinks" onclick="openTab(event, 'Entirelevel')" data-value="all" >
-            <img src="Overall.svg" alt="Entirelevel Icon">Entire Level
+            <img src="Overall.svg" alt="Overview Icon">Overview
             </button>
             <button class="tablinks" onclick="openTab(event, 'Painting')"data-value="Painting">
-                <img src="painting.svg" alt="Painting Icon">Painting
+            <img src="painting.svg" alt="Painting Icon">Painting
             </button>
             <button class="tablinks" onclick="openTab(event, 'Sculpture')"data-value="Sculpture">
             <img src="sculpture.svg" alt="Sculpture Icon">Sculpture
@@ -72,29 +64,13 @@
             <button class="tablinks" onclick="openTab(event, 'DecorativeArt')"data-value="Decorative Art">
             <img src="Decorative art.svg" alt="Decorative Art Icon">Decorative Art
             </button>
-            <button class="tablinks" onclick="openTab(event, 'Drawing')"data-value="Drawing">
-             <img src="Decorative art.svg" alt="Decorative Art Icon">Drawing
-                </button>
     </div>
-</div>
-
 
 <!-- Tab content -->
 <div class="content">
 
-    <div id="Overview" class="tabcontent">
-        <h2>A Dense Tapestry of Art Diversity</h2>
-        <div id="description">
-        <h3>To provide visitors with a visualization indicating the density and distribution of different types of art works in the National Gallery of Art, allowing them to navigate and plan their visit based on their interests.</h3>
-        <div id="dot-matrix-container">
-            <h5>Proportion of Art types</h5>
-            <svg width="180" height="180"></svg>
-            <div id="legend"></div>
-        </div>
-       </div>
-
     <!-- Overview tab -->
-    <div id="Entirelevel" class="tabcontent">
+    <div id="Overview" class="tabcontent">
      <div id="allcontainer">
         <div id ="Combinecolor">
             <div class="stackedColorBoxContaineroverview">
@@ -317,235 +293,174 @@
 </div>
 </div>
 <script>
-     let selectedColors = []
+    let selectedColors = []
 
-// Function to get color by art type
-function getColorByArtType(TypesofArt) {
-    switch (TypesofArt) {
-        case 'Sculpture':
-            return '#ef3c23';
-        case 'Painting':
-            return '#1b4793';
-        case 'Decorative Art':
-            return '#f15a42';
-        case 'Drawing':
-            return '#fac92c';
-        case 'New media':
-            return '#f7b0be';
-        case 'Photograph':
-            return '#ed8e83';
-        case 'Print':
-            return '#cfe5cc';
-        case 'Volume':
-            return '#2178ae';
-    }
-}
-function colorDifference(color1, color2) {
-    const r1 = parseInt(color1.slice(1, 3), 16);
-    const g1 = parseInt(color1.slice(3, 5), 16);
-    const b1 = parseInt(color1.slice(5, 7), 16);
-
-    const r2 = parseInt(color2.slice(1, 3), 16);
-    const g2 = parseInt(color2.slice(3, 5), 16);
-    const b2 = parseInt(color2.slice(5, 7), 16);
-
-    const dr = r1 - r2;
-    const dg = g1 - g2;
-    const db = b1 - b2;
-
-    return Math.sqrt(dr * dr + dg * dg + db * db);
-}
-
-// Function to check color similarity
-function isColorSimilar(hex1, hex2) {
-      let threshold = 10;
-      let rgb1 = hexToRgb(hex1);
-      let rgb2 = hexToRgb(hex2);
-
-      let diffR = Math.abs(rgb1.r - rgb2.r);
-      let diffG = Math.abs(rgb1.g - rgb2.g);
-      let diffB = Math.abs(rgb1.b - rgb2.b);
-
-      return diffR <= threshold && diffG <= threshold && diffB <= threshold;
+    // Function to get color by art type
+    function getColorByArtType(TypesofArt) {
+        switch (TypesofArt) {
+            case 'Sculpture':
+                return 'red';
+            case 'Painting':
+                return 'blue';
+            case 'Decorative Art':
+                return 'green';
+            case 'Drawing':
+                return 'yellow';
+            case 'New media':
+                return 'pink';
+            case 'Photograph':
+                return 'purple';
+            case 'Print':
+                return 'grey';
+            case 'Volume':
+                return 'orange';
+        }
     }
 
-    // Function to convert hex to RGB
-    function hexToRgb(hex) {
-      let bigint = parseInt(hex.slice(1), 16);
-      return {
-        r: (bigint >> 16) & 255,
-        g: (bigint >> 8) & 255,
-        b: bigint & 255
-      };
+    function colorDifference(color1, color2) {
+        const r1 = parseInt(color1.slice(1, 3), 16);
+        const g1 = parseInt(color1.slice(3, 5), 16);
+        const b1 = parseInt(color1.slice(5, 7), 16);
+
+        const r2 = parseInt(color2.slice(1, 3), 16);
+        const g2 = parseInt(color2.slice(3, 5), 16);
+        const b2 = parseInt(color2.slice(5, 7), 16);
+
+        const dr = r1 - r2;
+        const dg = g1 - g2;
+        const db = b1 - b2;
+
+        return Math.sqrt(dr * dr + dg * dg + db * db);
     }
+
+    // Function to check color similarity
+    function isColorSimilar(hex1, hex2) {
+          let threshold = 10;
+          let rgb1 = hexToRgb(hex1);
+          let rgb2 = hexToRgb(hex2);
+
+          let diffR = Math.abs(rgb1.r - rgb2.r);
+          let diffG = Math.abs(rgb1.g - rgb2.g);
+          let diffB = Math.abs(rgb1.b - rgb2.b);
+
+          return diffR <= threshold && diffG <= threshold && diffB <= threshold;
+        }
+
+        // Function to convert hex to RGB
+        function hexToRgb(hex) {
+          let bigint = parseInt(hex.slice(1), 16);
+          return {
+            r: (bigint >> 16) & 255,
+            g: (bigint >> 8) & 255,
+            b: bigint & 255
+          };
+        }
 
 
 let selectedArtType = 'all';
 
 function filterBySelectedColors() {
-const tolerance = 10;
+    const tolerance = 10;
 
-d3.selectAll('circle').style('display', function() {
-    const circle = d3.select(this);
-    const artType = circle.attr('data-art-type');
-    
-    // Ensure that the 'data-colors' attribute exists and is retrieved correctly
-    const circleColorData = circle.attr('data-colors');
-    let circleColors = [];
-    
-    // Check if 'circleColorData' is not null or undefined
-    if (circleColorData) {
-        circleColors = circleColorData.split(', ');
-    }
+    d3.selectAll('circle').style('display', function() {
+        const circle = d3.select(this);
+        const artType = circle.attr('data-art-type');
+        const circleColors = circle.attr('data-colors').split(', ');
 
-    const isCorrectType = (selectedArtType === 'all' || artType === selectedArtType);
-    let isColorMatched = (selectedColors.length === 0);
+        const isCorrectType = (selectedArtType === 'all' || artType === selectedArtType);
+        let isColorMatched = (selectedColors.length === 0);
 
-    if (isCorrectType && circleColors.length > 0) {
-        selectedColors.forEach(selectedColor => {
-            circleColors.forEach(circleColor => {
-                if (colorDifference(circleColor, selectedColor) < tolerance) {
-                    isColorMatched = true;
-                }
+        if (isCorrectType) {
+            selectedColors.forEach(selectedColor => {
+                circleColors.forEach(circleColor => {
+                    if (colorDifference(circleColor, selectedColor) < tolerance) {
+                        isColorMatched = true;
+                    }
+                });
             });
-        });
-        return isColorMatched ? 'block' : 'none';
-    }
-    return 'none';
-});
+            return isColorMatched ? 'block' : 'none';
+        }
+        return 'none';
+    });
 }
 
-d3.selectAll('.img-container circle').each(function() {
-    const dataColor = d3.select(this).attr('data-color');
-    console.log(data-color);
+    d3.selectAll('.img-container circle').each(function() {
+        const dataColor = d3.select(this).attr('data-color');
+        console.log(data-color);
+    });
+
+
+    document.querySelectorAll('.tablinks').forEach(button => {
+    button.addEventListener('click', function() {
+        document.querySelectorAll('.tablinks').forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        selectedArtType = this.getAttribute('data-value');
+        console.log('Selected Art Type:', selectedArtType); // เพิ่ม console.log ตรงนี้
+        filterBySelectedColors(); // กรองภาพตามประเภทศิลปะที่เลือก
+    });
 });
 
 
-document.querySelectorAll('.tablinks').forEach(button => {
-button.addEventListener('click', function() {
-    document.querySelectorAll('.tablinks').forEach(btn => btn.classList.remove('active'));
-    this.classList.add('active');
-    selectedArtType = this.getAttribute('data-value');
-    console.log('Selected Art Type:', selectedArtType); // เพิ่ม console.log ตรงนี้
-    filterBySelectedColors(); // กรองภาพตามประเภทศิลปะที่เลือก
-});
-});
-
-
-
+   
 d3.selectAll('.color-picker').on('input', function() {
-const selectedColor = this.value.toUpperCase();
-if (!selectedColors.includes(selectedColor)) {
-    selectedColors.push(selectedColor);
-}
-filterBySelectedColors();
+    const selectedColor = this.value.toUpperCase();
+    if (!selectedColors.includes(selectedColor)) {
+        selectedColors.push(selectedColor);
+    }
+    filterBySelectedColors();
 });
 
 
 
 function onColorBoxClick(id) {
-const colorPicker = document.getElementById(`colorPicker${id}`);
-colorPicker.style.display = 'block'; // แสดง color picker
+    const colorPicker = document.getElementById(`colorPicker${id}`);
+    colorPicker.style.display = 'block'; // แสดง color picker
 
-// กำหนดฟังก์ชันเมื่อมีการเปลี่ยนแปลงสี
-colorPicker.onchange = function() {
-    const newColor = this.value.toUpperCase();
-    updateSelectedColors(id, newColor); // อัปเดตรายการสีที่เลือก
-    updateColorBoxDisplay(id, newColor); // อัปเดตการแสดงผลของกล่องสี
-    filterBySelectedColors(); // กรองอีกครั้งด้วยสีใหม่
-};
+    // กำหนดฟังก์ชันเมื่อมีการเปลี่ยนแปลงสี
+    colorPicker.onchange = function() {
+        const newColor = this.value.toUpperCase();
+        updateSelectedColors(id, newColor); // อัปเดตรายการสีที่เลือก
+        updateColorBoxDisplay(id, newColor); // อัปเดตการแสดงผลของกล่องสี
+        filterBySelectedColors(); // กรองอีกครั้งด้วยสีใหม่
+    };
 }
 
 function updateSelectedColors(id, newColor) {
-// อัปเดตสีในรายการ selectedColors
-if (selectedColors.length >= id) {
-    selectedColors[id - 1] = newColor;
-}
+    // อัปเดตสีในรายการ selectedColors
+    if (selectedColors.length >= id) {
+        selectedColors[id - 1] = newColor;
+    }
 }
 
 // อัปเดตการแสดงผลของกล่องสี
 function updateColorBoxDisplay(id, color) {
-const box = document.getElementById(`box${id}`);
-box.style.backgroundColor = color;
+    const box = document.getElementById(`box${id}`);
+    box.style.backgroundColor = color;
 
-const stackedBox = document.getElementById(`stackedBox${id}`);
-if (stackedBox) {
-    stackedBox.style.backgroundColor = color;
-}
+    const stackedBox = document.getElementById(`stackedBox${id}`);
+    if (stackedBox) {
+        stackedBox.style.backgroundColor = color;
+    }
 }
 
 // เพิ่ม Event Listener ให้กล่องสี
 for (let i = 1; i <= 20; i++) {
-document.getElementById(`box${i}`).addEventListener('click', function() {
-    onColorBoxClick(i);
-});
+    document.getElementById(`box${i}`).addEventListener('click', function() {
+        onColorBoxClick(i);
+    });
 }
 
 function addColorBox() {
-for (let i = 1; i <= 20; i++) {
-    const box = document.getElementById(`box${i}`);
-    if (box.classList.contains("hidden")) {
-        if (i === 1 || document.getElementById(`box${i-1}`).style.backgroundColor !== "") {
-            box.classList.remove("hidden");
-            return;
+    for (let i = 1; i <= 20; i++) {
+        const box = document.getElementById(`box${i}`);
+        if (box.classList.contains("hidden")) {
+            if (i === 1 || document.getElementById(`box${i-1}`).style.backgroundColor !== "") {
+                box.classList.remove("hidden");
+                return;
+            }
         }
     }
-}
-alert("Cannot add new color box. Previous box is empty or maximum number of color boxes reached.");
-}
-
-d3.selectAll('.color-picker').on('input', function() {
-const id = this.id.replace('colorPicker', '');
-const selectedColor = this.value.toUpperCase();
-if (!selectedColors.includes(selectedColor)) {
-    selectedColors.push(selectedColor);
-}
-updateColorBoxDisplay(id, selectedColor);
-filterBySelectedColors();
-});
-
-
-function clearBoxColor(id) {
-const box = document.getElementById(`box${id}`);
-box.style.backgroundColor = ''; 
-
-const colorPicker = document.getElementById(`colorPicker${id}`);
-colorPicker.style.display = 'block'; 
-
-const stackedBox = document.getElementById(`stackedBox${id}`);
-if (stackedBox) {
-    stackedBox.style.backgroundColor = '';
-    
-}
-
-// Clear and hide subsequent boxes
-for (let i = id + 1; i <= 5; i++) {
-    const nextBox = document.getElementById(`box${i}`);
-    nextBox.style.backgroundColor = '';
-    nextBox.classList.add("hidden");
-
-    const nextStackedBox = document.getElementById(`stackedBox${i}`);
-    if (nextStackedBox) {
-        nextStackedBox.style.backgroundColor = '';
-    }
-
-    const nextColorPicker = document.getElementById(`colorPicker${i}`);
-    nextColorPicker.style.display = 'block';
-}
-
-filterBySelectedColors();
-}
-function deleteBox(id) {
-const box = document.getElementById(`box${id}`);
-box.classList.add("hidden");
-
-clearBoxColor(id);
-
-// Clear and hide subsequent boxes
-for (let i = id + 1; i <= 5; i++) {
-    clearBoxColor(i);
-    document.getElementById(`box${i}`).classList.add("hidden");
-}
+    alert("Cannot add new color box. Previous box is empty or maximum number of color boxes reached.");
 }
 
 d3.selectAll('.color-picker').on('input', function() {
@@ -558,367 +473,255 @@ d3.selectAll('.color-picker').on('input', function() {
     filterBySelectedColors();
 });
 
-for (let i = 1; i <= 5; i++) {
-    document.getElementById(`box${i}`).addEventListener('dblclick', function() {
+
+function clearBoxColor(id) {
+    const box = document.getElementById(`box${id}`);
+    box.style.backgroundColor = ''; 
+
+    const colorPicker = document.getElementById(`colorPicker${id}`);
+    colorPicker.style.display = 'block'; 
+
+    const stackedBox = document.getElementById(`stackedBox${id}`);
+    if (stackedBox) {
+        stackedBox.style.backgroundColor = '';
+        
+    }
+
+    // Clear and hide subsequent boxes
+    for (let i = id + 1; i <= 5; i++) {
+        const nextBox = document.getElementById(`box${i}`);
+        nextBox.style.backgroundColor = '';
+        nextBox.classList.add("hidden");
+
+        const nextStackedBox = document.getElementById(`stackedBox${i}`);
+        if (nextStackedBox) {
+            nextStackedBox.style.backgroundColor = '';
+        }
+
+        const nextColorPicker = document.getElementById(`colorPicker${i}`);
+        nextColorPicker.style.display = 'block';
+    }
+
+    filterBySelectedColors();
+}
+    function deleteBox(id) {
+    const box = document.getElementById(`box${id}`);
+    box.classList.add("hidden");
+
+    clearBoxColor(id);
+
+    // Clear and hide subsequent boxes
+    for (let i = id + 1; i <= 5; i++) {
         clearBoxColor(i);
-    });
+        document.getElementById(`box${i}`).classList.add("hidden");
+    }
 }
 
+    d3.selectAll('.color-picker').on('input', function() {
+        const id = this.id.replace('colorPicker', '');
+        const selectedColor = this.value.toUpperCase();
+        if (!selectedColors.includes(selectedColor)) {
+            selectedColors.push(selectedColor);
+        }
+        updateColorBoxDisplay(id, selectedColor);
+        filterBySelectedColors();
+    });
+
+    for (let i = 1; i <= 5; i++) {
+        document.getElementById(`box${i}`).addEventListener('dblclick', function() {
+            clearBoxColor(i);
+        });
+    }
+    
 // Create a function to generate color boxes
 function createColorBox(container, color) {
-const colorBox = document.createElement("div");
-colorBox.classList.add("color-box");
-colorBox.style.backgroundColor = color;
+    const colorBox = document.createElement("div");
+    colorBox.classList.add("color-box");
+    colorBox.style.backgroundColor = color;
 
-// Show color code on hover
-colorBox.addEventListener("mouseover", function () {
-    colorBox.textContent = color;
-});
+    // Show color code on hover
+    colorBox.addEventListener("mouseover", function () {
+        colorBox.textContent = color;
+    });
 
-// Hide color code on mouseout
-colorBox.addEventListener("mouseout", function () {
-    colorBox.textContent = "";
-});
+    // Hide color code on mouseout
+    colorBox.addEventListener("mouseout", function () {
+        colorBox.textContent = "";
+    });
 
-container.appendChild(colorBox);
+    container.appendChild(colorBox);
 }
-
 // Function to show modal
+function showModal(imageUrl, info, colors, site, description) {
+        modalImage.src = imageUrl;
+        modalInfo.innerHTML = info.replace(/\n/g, "<br>");
 
-function showModal(imageUrl, info, colors) {
-const modal = document.getElementById('myModal');
-const modalImage = document.getElementById('modalImage');
-const modalInfo = document.getElementById('modalInfo');
-const colorContainer = document.getElementById('colorContainer');
+        let tagButtons = `<button class="tag-button" onclick="alert('${site}')">Site Tag</button>` +
+                        `<button class="tag-button" onclick="alert('${description}')">Description Tag</button>`;
 
-// Set the image and information
-modalImage.src = imageUrl;
-modalInfo.textContent = info; // Change text content
+        modalInfo.innerHTML += tagButtons;
 
-// Clear out any existing color swatches
-colorContainer.innerHTML = '';
+        let colorDivs = "<div>Your ingredients:</div>";
+        colors.forEach(color => {
+            colorDivs += `<div style="background-color: ${color}; width: 20px; height: 20px; margin: 5px;"></div>`;
+        });
+        document.getElementById("colorContainer").innerHTML = colorDivs;
 
-// Create color swatches for each color with custom size of container
-hexColorsForThisCircle.forEach(color => {
-const colorSwatch = document.createElement('div');
-colorSwatch.className = 'color-swatch';
-colorSwatch.style.backgroundColor = color;
-colorSwatch.style.width = '40px'; // กำหนดความกว้าง
-colorSwatch.style.height = '40px'; // กำหนดความสูง
-colorContainer.appendChild(colorSwatch);
-});
-
-// Display the modal
-modal.style.display = 'block';
-}
-
-// Close the modal when clicking anywhere outside of the modal
-window.onclick = function(event) {
-    if (event.target === modal) {
-        modal.style.display = 'none';
+        modal.style.display = "block";
     }
-};
-
-// Close the modal when clicking anywhere outside of the modal
-window.onclick = function(event) {
-const modal = document.getElementById('myModal');
-if (event.target === modal) {
-    modal.style.display = 'none';
-}
-};
-
-function getSizeByArtType(artType) {
-    const sizeMap = {
-        "Painting": { width: 20, height: 10 },
-        "Sculpture": { width: 30, height: 15 },
-        "Photography": { width: 15, height: 20 },
-        // กำหนดขนาดเพิ่มเติมตามประเภทศิลปะที่คุณมี
-    };
-    return sizeMap[artType] || { width: 10, height: 10 }; // คืนค่าเริ่มต้นถ้าไม่มีการกำหนด
-}
 
 
 
 // Load the SVG file
-d3.xml('Sclupture Garden.svg').then(svgData => {
-const svgContainer = document.getElementById("svg-container");
-svgContainer.appendChild(svgData.documentElement);
+d3.xml('WEST-2.svg').then(svgData => {
 
-// Load CSV data after SVG is loaded
-d3.csv('Finaldata.csv').then(function(data) {
-    // Filter data for "West Ground Floor"
-    let filteredData = data.filter(d => d.description.includes("West Ground Floor"));
-
-    // Count types of art from filtered data
-    let typeCounts = {};
-    filteredData.forEach(d => {
-        if (!typeCounts[d.TypesofArt]) {
-            typeCounts[d.TypesofArt] = 0;
-        }
-        typeCounts[d.TypesofArt] += 1;
-    });
-
-    // Calculate dots per type
-    const totalOccurrences = d3.sum(Object.values(typeCounts));
-    const totalDots = 100;
-    let typeDots = {};
-    for (const artType in typeCounts) {
-        typeDots[artType] = Math.round(totalDots * (typeCounts[artType] / totalOccurrences));
-    }
-
- // Define colorMap for each art types
-    let colorMap = {
-        "Sculpture": "#ef3c23",
-        "Painting": "#1b4793",
-        "Decorative Art": "#f15a42",
-        "Drawing": "#fac92c",
-        "New media": "#f7b0be",
-        "Photograph": "#ed8e83",
-        "Print": "#cfe5cc",
-        "Volume": "#2178ae",
-    };
-
-    // Set up some initial variables
-const dotSize = 15;
-const maxCol = 10;
-let row = 0, col = 0;
-
-// Select the SVG container for the dot matrix
-const svgDotMatrix = d3.select("#dot-matrix-container svg");
-
-// Ensure that each type has at least one dot
-Object.keys(typeDots).forEach((key) => {
-    if (typeDots[key] === 0) {
-        typeDots[key] = 1; // Assign one dot if count is zero
-    }
-});
+    const svgContainer = document.getElementById("svg-container");
+    svgContainer.appendChild(svgData.documentElement);
 
 
-// Add dots to the categories with the smallest percentages until the total number of dots is 100
-while (totalDots < 100) {
-    let minKey = null;
-    let minValue = Infinity;
-    Object.keys(typeDots).forEach((key) => {
-        if (typeDots[key] < minValue) {
-            minValue = typeDots[key];
-            minKey = key;
-        }
-    });
-    typeDots[minKey]++; // Add a dot to the category with the smallest number of dots
-    totalDots++;
-}
+    d3.csv('Finaldata.csv').then(function(data) {
+        data.forEach(function(d, index) {
+            console.log("Room ID from CSV:", d.room); // ตรวจสอบข้อมูลจาก CSV
+            const roomGroup = d3.select(`#${d.room}`);
+            console.log("Selected Room Group:", roomGroup.node()); // ตรวจสอบว่าเลือก group ถูกต้องหรือไม่
 
-// Recalculate percentages based on the adjusted dot counts
-Object.keys(typeDots).forEach((key) => {
-    const percentage = (typeDots[key] / totalDots * 100).toFixed(2);
-    typeDots[key] = parseFloat(percentage); // Ensure it's a number, not a string
-});
+            if (!roomGroup.empty()) {
+                // Calculate the bounding box of the roomGroup
+                const roomGroupElement = roomGroup.node(); // Get the DOM element
+                const roomGroupBBox = roomGroupElement.getBBox();
 
-// Draw the dots in the SVG
-Object.keys(typeDots).forEach((artType) => {
-    const dots = typeDots[artType];
-    for (let i = 0; i < dots; i++) {
-        svgDotMatrix.append("circle")
-            .attr("cx", col * (dotSize + 2) + (dotSize / 2))
-            .attr("cy", row * (dotSize + 2) + (dotSize / 2))
-            .attr("r", dotSize / 2)
-            .attr("fill", colorMap[artType])
-            .attr("stroke", "white");
-        col++;
-        if (col >= maxCol) {
-            col = 0;
-            row++;
-        }
-    }
-});
+                // Use the bounding box dimensions
+                const roomGroupWidth = roomGroupBBox.width;
+                const roomGroupHeight = roomGroupBBox.height;
 
-// Remove any existing legends before creating new ones
-d3.select("#legend").selectAll("div").remove();
+                // Calculate random coordinates within the roomGroup
+                const randomX = roomGroupBBox.x + Math.random() * roomGroupWidth;
+                const randomY = roomGroupBBox.y + Math.random() * roomGroupHeight;
 
-// Create legends with the updated percentages
-Object.keys(typeDots).forEach((artType) => {
-    if (colorMap[artType]) {
-        const percentage = (typeDots[artType]).toFixed(2);
-        d3.select("#legend").append("div")
-            .style("display", "inline-block")
-            .style("margin-right", "20px")
-            .html(`
-                <div style="display: inline-block; width: ${dotSize}px; height: ${dotSize}px; background-color: ${colorMap[artType]}; border-radius: 50%; margin-right: 5px;"></div>
-                ${artType}: ${percentage}%
-            `);
-    }
-});
+                Vibrant.from(d.iiifthumburl).getPalette(function(err, palette) {
+                    if (!err) {
+                        let hexColorsForThisCircle = [];
+                        for (const swatch in palette) {
+                            if (palette[swatch] && typeof palette[swatch].getHex === 'function') {
+                                hexColorsForThisCircle.push(palette[swatch].getHex());
+                            }
+                        }
+
+                        // Append a circle to the selected group
+                        let circle = roomGroup.append("circle")
+                            .attr('cx', randomX)
+                            .attr('cy', randomY)
+                            .attr('r', 4)
+                            .attr('fill', getColorByArtType(d.TypesofArt))
+                            .attr('data-colors', hexColorsForThisCircle.join(', '))
+                            .attr('data-art-type', d.TypesofArt)
+                            .attr('data-site', d.site);
+                            
+                        console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
 
 
-    // Place circles on SVG
-    data.forEach(function(d, index) {
-        const roomGroup = d3.select(`#${d.room}`);
-        if (!roomGroup.empty()) {
-            const roomGroupElement = roomGroup.node();
-            const roomGroupBBox = roomGroupElement.getBBox();
-            const roomGroupWidth = roomGroupBBox.width;
-            const roomGroupHeight = roomGroupBBox.height;
-            const randomX = roomGroupBBox.x + Math.random() * roomGroupWidth;
-            const randomY = roomGroupBBox.y + Math.random() * roomGroupHeight;
+                        // Add click event to open the modal
+                        circle.on("click", function() {
+                            // Modal logic
+                            const modal = document.getElementById("myModal");
+                            const modalImage = document.getElementById("modalImage");
+                            const modalInfo = document.getElementById("modalInfo");
+                            const span = document.getElementsByClassName("close")[0];
 
-            Vibrant.from(d.iiifthumburl).getPalette(function(err, palette) {
-                if (!err) {
-                    let hexColorsForThisCircle = [];
-        let colorCount = 0; // ตัวแปรนับจำนวนสี
+                            // Set modal content
+                            modalImage.src = d.iiifthumburl; // Load the image
+                            modalInfo.textContent = `Room: ${d.room}\nArt Type: ${d.TypesofArt}\nColors: ${hexColorsForThisCircle.join(', ')}`;
+                            circle.on("click", function() {
+                            let modalInfo = `${d.title_x}\nby: ${d.forwarddisplayname}\nYear: ${d.displaydate_x}`;
+                            let site = d.site;
+                            let description = d.description;
+                            showModal(d.iiifthumburl, modalInfo, hexColorsForThisCircle, site, description);
+                        });
+                            // Display the modal
+                            modal.style.display = "block";
 
-        for (const swatch in palette) {
-            if (colorCount >= 5) break; // หยุดลูปหากสกัดสีได้ 5 สีแล้ว
+                            // Close modal when clicking the close button or outside the modal
+                            span.onclick = function() {
+                                modal.style.display = "none";
+                            }
 
-            if (palette[swatch] && typeof palette[swatch].getHex === 'function') {
-                hexColorsForThisCircle.push(palette[swatch].getHex());
-                colorCount++; // เพิ่มจำนวนสีที่นับได้
-            }
-        }
-                    let circle = roomGroup.append("circle")
-                        .attr('cx', randomX)
-                        .attr('cy', randomY)
-                        .attr('r', 4)
-                        .attr('fill', getColorByArtType(d.TypesofArt))
-                        .attr('data-colors', hexColorsForThisCircle.join(', '))
-                        .attr('data-art-type', d.TypesofArt)
-                        .attr('data-site', d.site);
+                            window.onclick = function(event) {
+                                if (event.target == modal) {
+                                    modal.style.display = "none";
+                                }
+                            }
+                        });
 
-                    // Add click event for modal (Assuming modal logic is defined elsewhere)
-                    // Add click event to open the modal
-            circle.on("click", function() {
-                // Modal logic
-                const modal = document.getElementById("myModal");
-                const modalImage = document.getElementById("modalImage");
-                const modalInfo = document.getElementById("modalInfo");
-                const colorContainer = document.getElementById("colorContainer");
-                const span = document.getElementsByClassName("close")[0];
-
-                // Set modal content
-                modalImage.src = d.iiifthumburl; // Load the image
-                modalInfo.textContent = `Room: ${d.room}\nArt Type: ${d.TypesofArt}\n`;
-
-                // Clear previous color swatches
-                colorContainer.innerHTML = '';
-
-                // Create color swatches for each color
-                hexColorsForThisCircle.forEach(color => {
-                const size = getSizeByArtType(d.TypesofArt); // รับค่าขนาด
-                const colorSwatch = document.createElement('div');
-                colorSwatch.className = 'color-swatch';
-                colorSwatch.style.backgroundColor = color;
-                colorSwatch.style.width = `${size.width}px`; // กำหนดความกว้าง
-                colorSwatch.style.height = `${size.height}px`; // กำหนดความสูง
-                colorContainer.appendChild(colorSwatch);
-            });
-
-                // Display the modal
-                modal.style.display = "block";
-
-                // Close modal when clicking the close button or outside the modal
-                span.onclick = function() {
-                    modal.style.display = "none";
-                }
-
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
+                        // Log the color data for this circle
+                        console.log('Circle ID:', index, 'Colors:', hexColorsForThisCircle);
+                    } else {
+                        console.error("Error at index", index, "with URL:", d.iiifthumburl, "Error:", err);
                     }
-                }
-            });
-                } else {
-                    console.error("Error at index", index, "with URL:", d.iiifthumburl, "Error:", err);
-                }
-            });
-        } else {
-            console.warn("Room group not found for", d.room);
-        }
+                });
+            } else {
+                console.warn("Room group not found for", d.room);
+            }
+        });
     });
 });
-});
-
 
 // Function to filter art by type
 function filterArtByType(selectedArtType) {
-d3.selectAll('circle')
-    .style('display', function() {
-        const artType = d3.select(this).attr('data-art-type');
-        return (selectedArtType === 'all' || artType === selectedArtType) ? 'block' : 'none';
-    });
+    d3.selectAll('circle')
+        .style('display', function() {
+            const artType = d3.select(this).attr('data-art-type');
+            return (selectedArtType === 'all' || artType === selectedArtType) ? 'block' : 'none';
+        });
 }
 
 // Add event listeners to toggle buttons
 document.querySelectorAll('.tablinks').forEach(button => {
-button.addEventListener('click', function() {
-    // Remove the 'active' class from all buttons
-    document.querySelectorAll('.tablinks').forEach(btn => btn.classList.remove('active'));
-    
-    // Add the 'active' class to the clicked button
-    this.classList.add('active');
-    
-    const selectedArtType = this.getAttribute('data-value');
-    filterArtByType(selectedArtType); // Call the filter function
+    button.addEventListener('click', function() {
+        // Remove the 'active' class from all buttons
+        document.querySelectorAll('.tablinks').forEach(btn => btn.classList.remove('active'));
+        
+        // Add the 'active' class to the clicked button
+        this.classList.add('active');
+        
+        const selectedArtType = this.getAttribute('data-value');
+        filterArtByType(selectedArtType); // Call the filter function
+    });
 });
-});
-   
+       
 
 // Function to open a tab and filter the art
 function openTab(evt, tabName) {
-var i, tabcontent, tablinks;
-
-// Hide all tab content
-tabcontent = document.getElementsByClassName("tabcontent");
-for (i = 0; i < tabcontent.length; i++) {
-tabcontent[i].style.display = "none";
+  var i, tabcontent, tablinks;
+  
+  // Hide all tab content
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  
+  // Remove 'active' class from all tab links
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  
+  // Show the current tab content
+  var selectedTabContent = document.getElementById(tabName);
+  if (selectedTabContent) {
+    selectedTabContent.style.display = "block";
+  } else {
+    console.error(`No element with id '${tabName}' was found.`);
+  }
+  
+  // Add 'active' class to the clicked tab/button
+  if (evt.currentTarget) {
+    evt.currentTarget.className += " active";
+  } else {
+    console.error("Event target is not available.");
+  }
 }
 
-// Remove 'active' class from all tab links
-tablinks = document.getElementsByClassName("tablinks");
-for (i = 0; i < tablinks.length; i++) {
-tablinks[i].className = tablinks[i].className.replace(" active", "");
-}
 
-// Show the current tab content
-var selectedTabContent = document.getElementById(tabName);
-if (selectedTabContent) {
-selectedTabContent.style.display = "block";
-} else {
-console.error(`No element with id '${tabName}' was found.`);
-}
-
-// Add 'active' class to the clicked tab/button
-if (evt.currentTarget) {
-evt.currentTarget.className += " active";
-} else {
-console.error("Event target is not available.");
-}
-}
-// JavaScript for handling accordions
-var acc = document.getElementsByClassName("accordion");
-var i;
-
-for (i = 0; i < acc.length; i++) {
-acc[i].addEventListener("click", function() {
-this.classList.toggle("active");
-var panel = this.nextElementSibling;
-if (panel.style.maxHeight) {
-  panel.style.maxHeight = null;
-} else {
-  panel.style.maxHeight = panel.scrollHeight + "px";
-} 
-});
-}
-
-// JavaScript for handling the dropdown
-var dropdownBtn = document.getElementsByClassName("dropdown-btn")[0];
-dropdownBtn.addEventListener("click", function() {
-this.classList.toggle("active");
-var dropdownContent = this.nextElementSibling;
-if (dropdownContent.style.display === "block") {
-dropdownContent.style.display = "none";
-} else {
-dropdownContent.style.display = "block";
-}
-});
 
 
 

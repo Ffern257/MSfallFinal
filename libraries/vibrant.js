@@ -7416,7 +7416,7 @@ Vibrant.Generator = Generator;
 Vibrant.Filter = Filter;
 Vibrant.Util = Util;
 Vibrant.DefaultOpts = {
-    colorCount: 64,
+    colorCount: 20,
     quality: 5,
     generator: Generator.Default,
     ImageClass: null,

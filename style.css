@@ -1,72 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Playfair Display&display=swap');
 body, html {
-  margin: 0;
+  margin: 40;
   padding: 0;
-  font-family: 'Arial', sans-serif; /* You can change the font-family to match your design */
-
+  font-family: 'Playfair Display', sans-serif; /* You can change the font-family to match your design */
+  background-color: #FAFAFA;
 }
-
 
 .hidden {
     display: none;
 }
-/* สไตล์ของ Modal */
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
-}
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 600px;
-  text-align: center;
-  position: relative;
-}
-
-.close {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 10px;
-  cursor: pointer;
-}
-
-/* สไตล์ของสไวช์สี */
-.color-swatch {
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  margin: 5px;
-  border: 1px solid #ccc;
-}
-
-
-.close {
-color: #aaaaaa;
-float: right;
-font-size: 28px;
-font-weight: bold;
-cursor: pointer;
-}
-
-.close:hover, .close:focus {
-color: #000;
-text-decoration: none;
-cursor: pointer;
-}
 #Combinecolor{
 width:198px;
 height: 300px;
 }
+
 .colorBox {
 width: 80px;
 height: 80px;
@@ -74,6 +22,7 @@ border: 1px solid #a1a1a1;
 margin: 10px 0;
 position: relative;
 }
+
 .deleteBox {
 position: absolute;
 top: 5px;
@@ -104,32 +53,45 @@ font-size: 18px;
 padding: 5px;
 }
 
-.pagecontainer{
-  display: flex;
-  flex-direction: column;
-  background-color: #EEEEEE;
-}
+
 
 .container {
-display: flex;
-height: 745px;
-flex-direction: row;
-gap: 40px;
-padding: 40px;
+  height: 704px;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  padding: 40px;
+  padding-left: 0px;
 }
 .columnleft {
-width: 720px;
+width: 60%;
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
 gap: 40px;
 }
+
 #svg-container{
-  width: 582.26px;
-  height: 249.1px;
-  transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg);
+  width: 582.262px;
+  height: 249.105px;
+  z-index: 1;
+  display: block; /* This can help remove any extra space below the SVG */
 }
+#dot-matrix-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+#legend{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
 #plan{
   width: 720px;
   height: 415.66px;
@@ -137,49 +99,72 @@ gap: 40px;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transform: rotateX(45deg) rotateY(0deg) rotateZ(45deg);
 }
 
 .columnright{
 position: relative;
-width: 560px;
+width: 520px;
+height: 760px;
 padding: 20px;
 border-radius: 20px;
 border: 2px solid #3d3d3d;   
 background-color: #ffffff;
 align-items: center;
-justify-content: center;
 }
-
 
 #colorfilter {
 display: flex;
 align-items: center;
+flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
-#glass{
-  position: relative;
-  left:-25.5px;
-  top: -158px;
-  z-index: 2;
+#Combinecolor {
+  width: 198px;
+  height: 300px;
+  position: relative; /* Set a stacking context for absolute positioned children */
 }
+
+#glass {
+  position: absolute; /* Absolute positioning with respect to the nearest positioned ancestor */
+  left: 50%; /* Move to 50% from the left of the #Combinecolor */
+  top: 0; /* Align to the top of #Combinecolor */
+  transform: translateX(-50%); /* Offset by its own width to center it */
+  z-index: 2; /* Make sure it's stacked above other elements */
+}
+
 #bottle{
-  position: relative;
-  left:-5.5px;
-  top: -293.2px;
-  z-index: 2;
+  position: absolute; /* Absolute positioning with respect to the nearest positioned ancestor */
+  left: 50%; /* Move to 50% from the left of the #Combinecolor */
+  top: 0; /* Align to the top of #Combinecolor */
+  transform: translateX(-50%); /* Offset by its own width to center it */
+  z-index: 2; /* Make sure it's stacked above other elements */
 }
+
 #champ{
-  position: relative;
-  left:-9.5px;
-  top: -162.2px;
-  z-index: 2;
+  position: absolute; /* Absolute positioning with respect to the nearest positioned ancestor */
+  left: 50%; /* Move to 50% from the left of the #Combinecolor */
+  top: 0; /* Align to the top of #Combinecolor */
+  transform: translateX(-50%); /* Offset by its own width to center it */
+  z-index: 2; /* Make sure it's stacked above other elements */
 }
 
 #decor{
-  position: relative;
-  left:-8.5px;
-  top: -177.2px;
-  z-index: 2;
+  position: absolute; /* Absolute positioning with respect to the nearest positioned ancestor */
+  left: 50%; /* Move to 50% from the left of the #Combinecolor */
+  top: 0; /* Align to the top of #Combinecolor */
+  transform: translateX(-50%); /* Offset by its own width to center it */
+  z-index: 2; /* Make sure it's stacked above other elements */
+}
+
+#draw{
+  position: absolute; /* Absolute positioning with respect to the nearest positioned ancestor */
+  left: 50%; /* Move to 50% from the left of the #Combinecolor */
+  top: 0; /* Align to the top of #Combinecolor */
+  transform: translateX(-50%); /* Offset by its own width to center it */
+  z-index: 2; /* Make sure it's stacked above other elements */ 
 }
   
 #Combinecolor{
@@ -188,27 +173,31 @@ align-items: center;
 justify-content: center;
 }
 .stackedColorBoxContaineroverview{
+  display: flex;
+  position: relative;
   z-index: 1;
-  width: 85px;
-  height: 270px;
+  width: 120px;
+  height: 250px;
   justify-content: center;
   align-items: center;
   background-color: transparent;
   clip-path: url(#bottleclip); 
-  flex-direction: column;
-  filter: blur(2px) brightness(120%) grayscale(50%);
+  filter: blur(5px) brightness(100%) grayscale(0%);  top: 52px;
+  left: 64px;
 }
 .stackedColorBoxContainerpainting{
   display: flex;
   position: relative;
   z-index: 1;
-  width: 204px;
-  height: 145px;
+  width: 120px;
+  height: 142px;
   justify-content: center;
   align-items: center;
   background-color: transparent;
   clip-path: url(#paintingclip); 
-  filter: blur(2px) brightness(120%) grayscale(50%);
+  filter: blur(5px) brightness(100%) grayscale(0%);  
+  top: 13px;
+  left: -2px;
 }
 
 .stackedColorBoxContainersculpture{
@@ -221,7 +210,9 @@ justify-content: center;
   align-items: center;
   background-color: transparent;
   clip-path: url(#sclupclip); 
-  filter: blur(2px) brightness(120%) grayscale(50%);
+  filter: blur(5px) brightness(100%) grayscale(0%);  
+  top: 14px;
+  left: 70px;
 }
 .stackedColorBoxContainerdecor{
   display: flex;
@@ -233,25 +224,62 @@ justify-content: center;
   align-items: center;
   background-color: transparent;
   clip-path: url(#decorclip); 
-  filter: blur(2px) brightness(120%) grayscale(50%);
+  filter: blur(5px) brightness(100%) grayscale(0%);  
+  top: 8px;
+  left: 40px;
 }
 
+.stackedColorBoxContainerdraw{
+  display: flex;
+  position: relative;
+  z-index: 1;
+  width: 120px;
+  height: 250px;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  clip-path: url(#drawclip); 
+  filter: blur(5px) brightness(100%) grayscale(0%);  
+  top: 18px;
+  left: 38px;
+}
 #paintcontainer{
   width: 100%;
+  height: 300px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding:0;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 #allcontainer{
-  width: 100%;
+  width: 100%; /* Full width of the containing element */
+  height: 300px; /* Fixed height */
+  padding: 0;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  justify-content: center; /* Center children horizontally */
+  align-items: center; /* Center children vertically */
+  flex-direction: column; /* Stack children vertically */
 }
+
+#paintcontainer {
+  width: 100%; /* Full width of the containing element */
+  height: 300px; /* Fixed height */
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Center children horizontally */
+  align-items: center; /* Center children vertically */
+  flex-direction: column; /* Stack children vertically */
+}
+
 #sculpcontainer{
   width: 100%;
+  height: 300px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding:0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -259,6 +287,22 @@ justify-content: center;
 }
 #decorcontainer{
   width: 100%;
+  height: 300px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding:0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#drawcontainer{
+  width: 100%;
+  height: 300px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding:0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -267,7 +311,7 @@ justify-content: center;
 
 .stackedColorBox {
     position: absolute;
-    width: 198px;
+    width: 360px;
     height: 20%;
     z-index: 1;
   }
@@ -292,37 +336,41 @@ justify-content: center;
 #stackedBox18 { bottom: 40%;}
 #stackedBox19 { bottom: 60%;}
 #stackedBox20 { bottom: 80%;}
+#stackedBox21 { bottom: 0%;}
+#stackedBox22 { bottom: 20%;}
+#stackedBox23 { bottom: 40%;}
+#stackedBox24 { bottom: 60%;}
+#stackedBox25 { bottom: 80%;}
 
 #addbutton{
-width: 20px; /* Set the width of the button */
-height: 82px; /* Set the height of the button */
-background-color: #a1a1a1; /* The background color for the button */
-border: 2px solid #a1a1a1; /* The border color for the button */
-border-radius: 0 4px 4px 0; /* Rounded corners on the right side */
-display: flex; /* Use flexbox for centering content */
-justify-content: center; /* Center content horizontally */
-align-items: center; /* Center content vertically */
-font-size: 24px; /* Size of the '+' sign */
-color: #606060; /* Color of the '+' sign */
-cursor: pointer; /* Changes cursor to pointer on hover */
+width: 20px;
+height: 82px;
+background-color: #a1a1a1;
+border: 2px solid #a1a1a1;
+border-radius: 0 4px 4px 0;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 24px;
+color: #606060;
+cursor: pointer;
 }
 
-#svg-container {
-    z-index: 1;
-}
+
 /* Style the tab */
 .tab {
-  width: 100%;
-    overflow: hidden;
-    background-color: #fff; /* or any other color you want */
-    display: flex;
-    justify-content: space-around; /* This will space your tabs evenly */
-    align-items: center;
-    justify-content: center;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  justify-content: space-between;
+  min-width: 448px;
+}
   
   /* Style the buttons that are used to open the tab content */
   .tab button {
+    flex: 0 0 auto;
     width: 112px;
     height: 100px;
     background-color: inherit;
@@ -332,17 +380,15 @@ cursor: pointer; /* Changes cursor to pointer on hover */
     transition: 0.3s;
     display: flex;
     align-items: center;
-    font-size: 14px; /* Adjust as needed */
+    font-size: 14px;
     animation: fadeEffect 0.5s;
     display: flex;
     flex-direction: column;
     display: flex;
     width: 112px;
     padding: 4px;
-    flex-direction: column;
     justify-content: center;
     gap: 10px;
-    align-self: stretch;
   }
   
   /* Change background color of buttons on hover */
@@ -352,15 +398,15 @@ cursor: pointer; /* Changes cursor to pointer on hover */
   
   /* Create an active/current tablink class */
   .tab button.active {
-    border-bottom: 2px solid #3d3d3d; /* active tab underline */
+    border-bottom: 2px solid #3d3d3d;
   }
   
   /* Style the tab content */
   .tabcontent {
     display: none;
     padding: 20px;
-    border: none; /* Remove border if you don't need it */
-    animation: fadeEffect 0.5s; /* Fading effect on tab content */
+    border: none;
+    animation: fadeEffect 0.5s;
     top: 50%;
     left: 50%;
   }
@@ -375,7 +421,7 @@ cursor: pointer; /* Changes cursor to pointer on hover */
 /* Navigation */
 /* Style the dropdown button */
 .dropdown-btn {
-  background-color: white;
+  background-color: #FAFAFA;
   color: black;
   padding: 16px;
   font-size: 16px;
@@ -385,11 +431,16 @@ cursor: pointer; /* Changes cursor to pointer on hover */
 }
 
 .navbar {
+  top: 0;
   width: 100%;
-  background-color: #333;
-  position: absolute;
-  z-index: 101;
+  height: 60px; /* กำหนดความสูงของ navbar ถ้ายังไม่ได้กำหนด */
+  z-index: 100;
+  margin-left: 40px;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
 }
+
 
 /* Style adjustments for the button-style */
 .button-style {
@@ -427,13 +478,9 @@ cursor: pointer; /* Changes cursor to pointer on hover */
   background-color: #2874A6; /* Add a darker background on hover */
 /* } */ 
 
-.active:after {
-  content: "\2212"; /* Add minus sign for active accordion */
-}
-
 .accordion:after {
   content: '\002B'; /* Unicode character for plus sign */
-  color: white;
+  color: FAFAFA;
   float: right;
 }
 
@@ -441,7 +488,7 @@ cursor: pointer; /* Changes cursor to pointer on hover */
   display: flex;
   flex-direction: column;
   padding: 0;
-  background-color: white;
+  background-color: #FAFAFA;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
@@ -454,22 +501,17 @@ cursor: pointer; /* Changes cursor to pointer on hover */
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #FAFAFA;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
   flex-direction: column; /* Stack elements vertically */
 }
 
-/* Style to highlight the active link */
-.dropdown-content a.active {
-  background-color: blue; /* Change background color for the active link */
-}
 
 /* Style adjustments for the button-style */
 .button-style {
   display: block;
-  padding: 10px 15px;
   color: black;
   text-align: left;
   text-decoration: none;
@@ -481,17 +523,159 @@ cursor: pointer; /* Changes cursor to pointer on hover */
   background-color: #f1f1f1;
 }
 
-#colorContainer div {
-  width: 30px;
-  height: 30px;
-  display: inline-block;
+/* Styles for the swatch containers */
+.color-swatch-container {
+  display: flex;
+  flex-direction: row; /* Horizontal layout for the Existing swatch container */
+  margin-right: 10px; /* Space between the containers (horizontal) */
+  padding: 5px;
 }
 
-.color-swatch {
-  width: 30px; /* กำหนดความกว้าง */
-  height: 30px; /* กำหนดความสูง */
-  display: inline-block;
-  margin: 5px;
-  border: 1px solid #ccc;
-  z-index: 100;
+/* Styles for the second set of swatches */
+#colorContainerExtra {
+  display: flex; /* Vertical layout for the New swatch container */
+  flex-direction: column; /* Vertical layout for the New swatch container */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#typeofart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: transparent; /* หรือสีพื้นหลังที่คุณต้องการ */
+  z-index: 2; /* ตั้งค่า z-index เพื่อให้อยู่ข้างบน */
+}
+
+/* สไตล์ของ Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 101;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+  
+}
+
+.modal-content {
+  border-radius: 20px;
+  background-color: #fefefe;
+  margin: 0 auto; /* Removes the top margin to use only horizontal auto margins */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 1200px; /* Set the width */
+  height: 704px; /* Set the height */
+  text-align: center;
+  position: fixed; /* Position it fixed relative to the viewport */
+  top: 50%; /* Position the top edge of the modal in the middle of the viewport */
+  left: 50%; /* Position the left edge of the modal in the middle of the viewport */
+  transform: translate(-50%, -50%); /* Shift the modal back by half its own width and height to center it */
+  overflow-y: auto; /* Allows scrolling on small screens or if content is larger than the modal */
+}
+
+
+.close:hover, .close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  }
+
+.close {
+color: #aaaaaa;
+float: right;
+font-size: 28px;
+font-weight: bold;
+cursor: pointer;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+}
+.modal-left {
+  width: 400px;
+  height: 580px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#modalInfo{
+  display: flex;
+  justify-content: flex-start;
+}
+.modal-right{
+  width: 640px;
+  height: 580px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#svgContainer {
+  position: relative;
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+#colorContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  filter: blur(5px) brightness(100%) grayscale(0%);
+}
+
+.color-swatches-container {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+ 
+}
+
+.clip-path-painting {
+  clip-path: url(#clip-path-painting);
+  top: 180px;
+  left: 130px;
+}
+
+.clip-path-sculpture {
+  clip-path: url(#clip-path-sculpture);
+  top: 179.5px;
+  left: 201px;
+}
+
+.clip-path-decorative-art {
+  clip-path: url(#clip-path-decorative-art);
+  top: 69px;
+  left: 72px;
+}
+
+.clip-path-drawing {
+  clip-path: url(#clip-path-drawing);
+  top: 187px;
+  left: 170px;
+}
+
+/* Extra color swatch style */
+#extraColorContainer {
+  display: flex; /* Enables Flexbox */
+  justify-content: center; /* Centers children horizontally */
+  align-items: center; /* Centers children vertically */
+}
+
+.extra-color-swatch {
+  width: 80px;
+  height: 80px;
+  margin: 0px;
+  box-sizing: border-box; /* Include border in the width and height */
 }
